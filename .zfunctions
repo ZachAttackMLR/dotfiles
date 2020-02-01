@@ -1,0 +1,80 @@
+# Zach Gorman's .zfunctions
+
+# fzf {{{
+
+# fo [FUZZY PATTERN] - Open the selected file with the default editor
+#   - Bypass fuzzy finder if there's only one match (--select-1)
+#   - Exit if there's no match (--exit-0)
+fo() {
+  local files
+  IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
+  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+}
+
+# These last two are from Aaron Lichtman - https://github.com/alichtman/dotfiles
+# fman [FUZZY PATTERN] - Search man pages.
+fman() {
+	man -k . | fzf --prompt='Man> ' | awk '{print $1}' | cut -d "(" -f1 | xargs man
+}
+
+# macOS fuzzy app launcher
+launch() {
+	open -a "`find /Applications -name '*app' -maxdepth 1 | cut -d'/' -f 3 | cut -d'.' -f 1 | fzf --query=$1`"
+}
+
+# END fzf }}}
+
+# Dotfiles {{{
+
+# backup-dots [COMMIT MESSAGE]
+function backup-dots() {
+	echo "Backing up..."
+	(
+	shallow-backup -no_splash -dotfiles -separate_dotfiles_repo;
+	cd "$HOME/shallow-backup/dotfiles/" || exit
+	git add .
+
+	# If no commit message is provided, open vim.
+	# Otherwise, commit with the provided message
+	commit_msg="$1"
+	if [ -z "$commit_msg" ] ; then
+		git commit --verbose
+	else
+		git commit -m "$commit_msg"
+	fi
+	git push
+	)
+}
+
+# END Dotfiles }}}
+
+# Shortcuts {{{
+
+# Make a directory and cd into it.
+function mk() {
+	mkdir "$1" && cd "$1" || exit;
+}
+
+# Copy file contents to clipboard
+function copy() {
+	pbcopy < "$1"
+}
+
+# END Shortcuts }}}
+
+# Sound Stuff {{{
+
+# volume needs to be [0,100] in set of integers
+function set_volume {
+	osascript -e "set volume output volume $1"
+}
+
+function mute_vol {
+	mutestate=$(osascript -e "output muted of (get volume settings)")
+	if $mutestate == "true"; then
+		osascript -e 'set volume output muted false'; echo 'Volume Unmuted'
+	else osascript -e 'set volume output muted true'; echo 'Volume Muted'
+	fi
+}
+
+# END Sound Stuff }}}

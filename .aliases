@@ -1,0 +1,87 @@
+# ls Stuff {{{
+
+alias ls='LC_COLLATE=cs_CZ.ISO8859-2 colorls -1A --sd --gs'
+alias sl='ls' # for typo correction :)
+alias ll='LC_COLLATE=cs_CZ.ISO8859-2 colorls -1A --sd -l --gs'
+alias lsd='lsd -1a --group-dirs first'
+alias tree='ls --tree -I=.DS_Store'
+
+# END ls Stuff }}}
+
+# Update Stuff {{{
+
+alias brewup='brew update; brew upgrade; brew cask upgrade; brew cleanup;' # excluded brew doctor
+alias cargo-update='cargo install-update -a'
+alias vimup="nvim '+PlugUpdate' '+PlugUpgrade' '+CocUpdate' '+qall';"
+alias up='upgrade_oh_my_zsh; rustup update; cargo-update; npm update; brewup; vimup; zplug update;'
+
+# END Update Stuff }}}
+
+# macOS Stuff {{{
+
+alias unthrottle-time-machine='sudo sysctl debug.lowpri_throttle_enabled=0;'
+alias throttle-time-machine='sudo sysctl debug.lowpri_throttle_enabled=1;'
+
+### Checking mute and adjusting volume of computer via terminal
+alias chkvol='osascript -e "output volume of (get volume settings)"'
+alias chkmute='osascript -e "output muted of (get volume settings)"'
+alias setvol='set_volume'
+alias mute='mute_vol'
+
+# END macOS Stuff }}}
+
+# Base Conversion {{{
+
+alias rc='radix-calc'
+alias rcc='radix-calc --all'
+
+# Base Conversion }}}
+
+# Docker Stuff {{{
+
+alias docker='sudo docker'
+alias dockcomp='docker-compose'
+alias dockprune="echo '\n\033[0;34mPruning Containers...\033[0m' && docker container prune -f && echo '\n\033[0;34mPruning Images...\033[0m' && docker image prune -f && echo '\n\033[0;34mPruning System...\033[0m' && docker system prune -f"
+
+# END Docker Stuff }}}
+
+# Convenience {{{
+
+alias vim='nvim'
+alias google="googler --count 3 -l en"
+alias g='glow -p'
+alias py='python3'
+alias p3='pip3'
+alias fuck='eval $(TF_ALIAS=fuck PYTHONIOENCODING=utf-8 thefuck $(fc -ln -1))'
+alias please='sudo $(fc -ln -1)' # Rerun last command with sudo
+alias news='newsroom'
+alias weather='ansiweather'
+alias weatherf='ansiweather -F'
+alias weather-detailed='curl wttr.in'
+alias rm="safe-rm"
+
+# Shpotify
+alias spot='spotify'
+alias spotstat='spot status'
+
+# END Convenience }}}
+
+# Fun Stuff {{{
+
+alias trip='yes "$(seq 231 -1 16)" | while read i; do printf "\x1b[48;5;${i}m\n"; sleep .02; done'
+alias matrix='unimatrix -s 93'
+alias pipes='pipes.sh -f 75 -t 3 -B'
+alias mandelbrot='bash ~/bin/mandelbrot'
+
+# END Fun Stuff }}}
+
+# Tasks/Habits {{{
+
+alias t='tb'
+alias tasks='tb'
+alias task='tb --task'
+alias h='habitctl'
+alias habits='habitctl log && echo "\nTODO:\n" && habitctl todo'
+alias habitedit='habitctl edith'
+
+# END Tasks/Habits }}}
