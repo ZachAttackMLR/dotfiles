@@ -85,3 +85,5 @@ alias habits='habitctl log && echo "\nTODO:\n" && habitctl todo'
 alias habitedit='habitctl edith'
 
 # END Tasks/Habits }}}
+
+# vim: ft=zsh foldmethod=marker:

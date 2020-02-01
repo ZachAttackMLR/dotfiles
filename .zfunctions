@@ -78,3 +78,5 @@ function mute_vol {
 }
 
 # END Sound Stuff }}}
+
+# vim: set filetype=zsh foldmethod=marker:

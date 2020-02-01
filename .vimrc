@@ -334,8 +334,11 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 " END coc.nvim Config }}}}}}
 
 " START CodeStats config {{{
-"
+
 " all from https://gitlab.com/code-stats/code-stats-vim
+
+" I was gonna remove this for pushing to dotfiles, but if you want to give me
+" credit for your work go ahead? I guess? lol
 let g:codestats_api_key = 'SFMyNTY.V21GamFFRjBkR0ZqYTAxTVVnPT0jI05UZzRNdz09.yz-3ONv-pOoYqt1LdSngFVEBxCFTqWphjgcpXuigTz8'
 
 let g:airline_section_x = airline#section#create_right(['tagbar', 'filetype', '%{CodeStatsXp()}'])
