@@ -63,7 +63,7 @@ setopt mark_dirs
 source $ZSH/oh-my-zsh.sh
 
 # Autojump - just in case
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+#[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 # END zsh Stuff }}}
 
