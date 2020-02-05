@@ -82,9 +82,10 @@ function pdiff() {
 
 # END Shortcuts }}}
 
-# Sound Stuff {{{
+# Everything above this line is stolen, everything below is original
+# Everything below this line also will only work on macOS
 
-# Everything else in here might be stolen, but these aren't :)
+# Sound Stuff {{{
 
 # volume needs to be [0,100] in set of integers
 function set_volume {
@@ -100,5 +101,19 @@ function mute_vol {
 }
 
 # END Sound Stuff }}}
+
+# Ansiweather Forecast {{{
+
+# I didn't like that I couldn't display the current weather and the forecast in
+# different ways, so I scripted a way to do it.
+# Also, sed on macOS is different than other sed implementations, so it looks
+# a bit funky.
+function forecast() {
+	ansiweather -F | sed 's/:/:\
+   /' | sed 's/|/\
+   /g'
+}
+
+# END Ansiweather Forecast }}}
 
 # vim: set filetype=zsh foldmethod=marker:

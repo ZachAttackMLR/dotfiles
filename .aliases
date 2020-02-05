@@ -5,6 +5,7 @@ alias sl='ls' # for typo correction :)
 alias ll='LC_COLLATE=cs_CZ.ISO8859-2 colorls -1A --sd -l --gs'
 alias lsd='lsd -1a --group-dirs first'
 alias tree='ls --tree -I=.DS_Store'
+alias ldown='ls ~/Downloads/'
 
 # END ls Stuff }}}
 
@@ -55,8 +56,7 @@ alias p3='pip3'
 alias fuck='eval $(TF_ALIAS=fuck PYTHONIOENCODING=utf-8 thefuck $(fc -ln -1))'
 alias please='sudo $(fc -ln -1)' # Rerun last command with sudo
 alias news='newsroom'
-alias weather='ansiweather'
-alias weatherf='ansiweather -F'
+alias weather='ansiweather | sed "s/Sunrise.*S/S/"'
 alias weather-detailed='curl wttr.in'
 alias rm="safe-rm"
 
