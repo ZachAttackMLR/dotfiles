@@ -2,6 +2,8 @@
 
 # fzf {{{
 
+# Credit: https://github.com/alichtman/dotfiles/blob/master/.zfunctions
+
 # fo [FUZZY PATTERN] - Open the selected file with the default editor
 #   - Bypass fuzzy finder if there's only one match (--select-1)
 #   - Exit if there's no match (--exit-0)
@@ -25,6 +27,13 @@ launch() {
 # END fzf }}}
 
 # Dotfiles {{{
+
+# Credit: https://github.com/alichtman/dotfiles/blob/master/.zfunctions
+
+# Grab dotfiles list from shallow-backup config and throw it in a fzf selector for editing
+function dots() {
+	cat ~/.config/shallow-backup.conf | jq '.dotfiles' | jq -r '.[]' | fzf --bind "enter:execute(nvim ~/{})"
+}
 
 # backup-dots [COMMIT MESSAGE]
 function backup-dots() {
@@ -50,6 +59,8 @@ function backup-dots() {
 
 # Shortcuts {{{
 
+# Credit: https://github.com/alichtman/dotfiles/blob/master/.zfunctions
+
 # Make a directory and cd into it.
 function mk() {
 	mkdir "$1" && cd "$1" || exit;
@@ -60,9 +71,20 @@ function copy() {
 	pbcopy < "$1"
 }
 
+function cheat() {
+	curl cheat.sh/$1
+}
+
+# Prettier diffs
+function pdiff() {
+	diff -u $1 $2 | diff-so-fancy
+}
+
 # END Shortcuts }}}
 
 # Sound Stuff {{{
+
+# Everything else in here might be stolen, but these aren't :)
 
 # volume needs to be [0,100] in set of integers
 function set_volume {
