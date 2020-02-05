@@ -29,7 +29,6 @@ plugins=(
   zsh-autosuggestions
 )
 
-
 # zplug
 source ~/.zplug/init.zsh
 
@@ -44,6 +43,13 @@ if ! zplug check; then
     zplug install
 fi
 
+# z - https://github.com/rupa/z
+source $(brew --prefix)/etc/profile.d/z.sh
+
+# fz - https://github.com/changyuheng/fz#macos
+FZ_CMD=j
+FZ_SUBDIR_CMD=jj
+
 # END Plugins }}}
 
 # START zsh Stuff {{{
@@ -56,7 +62,7 @@ setopt mark_dirs
 
 source $ZSH/oh-my-zsh.sh
 
-# Autojump
+# Autojump - just in case
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 # END zsh Stuff }}}
@@ -75,6 +81,11 @@ COMPLETION_WAITING_DOTS="true"
 setopt globdots
 
 export YSU_MESSAGE_POSITION="after" # Positioning message for you-should-use plugin
+
+# homebrew completions
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+fi
 
 # pip zsh completion start
 function _pip_completion {
@@ -109,7 +120,6 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 autoload -U compinit && compinit
 
 # END Completion }}}
-
 
 # Start FZF Stuff {{{
 
