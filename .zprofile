@@ -7,8 +7,14 @@ export VISUAL='nvim'
 # Directories
 export ZSH=$HOME/.oh-my-zsh
 
+# GCC
+
+export CC=/usr/local/gcc-9.2/bin
+export LD=/usr/local/gcc-9.2/bin
+
 # PATH
 
+export PATH="$PATH:/usr/local/gcc-9.2/bin"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:/usr/local/bin"
