@@ -18,9 +18,9 @@ Plug 'mhinz/vim-startify' " 'The fancy start screen for Vim'
 Plug 'scrooloose/nerdtree'
 
 " Themes
-Plug 'joshdick/onedark.vim'
 Plug 'morhetz/gruvbox'
 Plug 'sainnhe/gruvbox-material'
+Plug 'chriskempson/base16-vim'
 
 " Status bar shiz
 Plug 'vim-airline/vim-airline'
@@ -156,11 +156,13 @@ vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 set background=dark
 
 " Purposely not using this
-" set termguicolors
+"set termguicolors
 
 colorscheme gruvbox-material
 let g:gruvbox_contrast_dark='dark'
-"colorscheme onedark
+
+"let base16colorspace=256  " Access colors present in 256 colorspace
+"colorscheme base16-black-metal
 
 " START Vim Dev Icons {{{
 
