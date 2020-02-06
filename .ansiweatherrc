@@ -1,0 +1,18 @@
+# Zach Gorman's ansiweatherrc
+# Based on: https://github.com/fcambus/ansiweather/blob/master/ansiweatherrc.example
+
+fetch_cmd:curl -sf
+location:Ames,US
+units:imperial
+forecast:0
+ansi:true
+symbols:true
+show_uvi:false
+show_wind:true
+show_humidity:false
+show_pressure:false
+show_daylight:true
+
+# Text & Colors
+background:\033[237m
+dashes:\033[34m|
