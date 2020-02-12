@@ -9,8 +9,8 @@ export ZSH=$HOME/.oh-my-zsh
 
 # GCC
 
-export CC=/usr/local/gcc-9.2/bin
-export LD=/usr/local/gcc-9.2/bin
+export CC=/usr/local/gcc-9.2/bin/gcc-9.2
+export LD=/usr/local/gcc-9.2/bin/gcc-9.2
 
 # PATH
 
