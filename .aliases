@@ -75,6 +75,7 @@ alias pipes='pipes.sh -f 75 -t 3 -B'
 # Shpotify
 alias spot='spotify'
 alias spotstat='spot status'
+alias sspt='launch Spotify && sleep 5 && spt'
 
 alias reddit='tuir'
 alias emoji='emoj'
