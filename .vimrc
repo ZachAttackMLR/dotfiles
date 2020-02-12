@@ -13,6 +13,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'} " Setup on line 235
 Plug 'ntpeters/vim-better-whitespace' " highlight trailing whitespace
 Plug 'ryanoasis/vim-devicons' " Icons for NERDTree
 Plug 'mhinz/vim-startify' " 'The fancy start screen for Vim'
+Plug 'Yggdroot/indentLine'
 
 " File explorer
 Plug 'scrooloose/nerdtree'
@@ -20,6 +21,7 @@ Plug 'scrooloose/nerdtree'
 " Themes
 Plug 'morhetz/gruvbox'
 Plug 'sainnhe/gruvbox-material'
+Plug 'nightsense/snow'
 Plug 'chriskempson/base16-vim'
 
 " Status bar shiz
@@ -155,11 +157,14 @@ vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 set background=dark
 
-" Purposely not using this
+" Purposely not using this for gruvbox-material.
+" Activate for other colorschemes.
 "set termguicolors
 
 colorscheme gruvbox-material
 let g:gruvbox_contrast_dark='dark'
+
+"colorscheme snow
 
 "let base16colorspace=256  " Access colors present in 256 colorspace
 "colorscheme base16-black-metal
