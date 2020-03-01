@@ -22,6 +22,7 @@ export PATH="$PATH:/sbin"
 export PATH="$PATH:/usr/local"
 export PATH="$PATH:/usr/sbin"
 export PATH="$PATH:/usr/local/sbin"
+export PATH="$PATH:/usr/local/anaconda3/bin"
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ]; then
