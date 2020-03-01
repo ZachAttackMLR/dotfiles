@@ -23,6 +23,8 @@ Plug 'morhetz/gruvbox'
 Plug 'sainnhe/gruvbox-material'
 Plug 'nightsense/snow'
 Plug 'chriskempson/base16-vim'
+Plug 'arzg/vim-colors-xcode'
+Plug 'nanotech/jellybeans.vim', { 'tag': 'v1.7' }
 
 " Status bar shiz
 Plug 'vim-airline/vim-airline'
@@ -125,7 +127,7 @@ set preserveindent
 filetype plugin indent on
 
 set expandtab     " enter spaces when tab is pressed
-set tabstop=2     " use 4 spaces to represent tab
+set tabstop=2     " use 2 spaces to represent tab
 set softtabstop=2
 set shiftwidth=2  " number of spaces to use for auto indent
 set autoindent    " copy indent from current line when starting a new lineet noexpandtab
@@ -155,6 +157,8 @@ vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 " START Appearance Config {{{
 
+" Colorscheme Configs {{{
+
 set background=dark
 
 " Purposely not using this for gruvbox-material.
@@ -164,10 +168,27 @@ set background=dark
 colorscheme gruvbox-material
 let g:gruvbox_contrast_dark='dark'
 
+" jellybeans.vim config {{{
+
+"let g:jellybeans_overrides = {
+"\    'Folded': { 'guifg': '5e6670', 'guibg': '1d2126',
+"\              'ctermfg': '5e6670', 'ctermbg': '1d2126',
+"\              'attr': 'italic' },
+"\}
+"colorscheme jellybeans
+"let g:jellybeans_use_term_italics = 1
+"let g:jellybeans_use_lowcolor_black = 1
+
+" END jellybeans.vim config }}}
+
+"colorscheme xcodewwdc
+"colorscheme xcodedark
 "colorscheme snow
 
 "let base16colorspace=256  " Access colors present in 256 colorspace
 "colorscheme base16-black-metal
+
+" END Colorscheme Configs }}}
 
 " START Vim Dev Icons {{{
 
@@ -186,6 +207,16 @@ let g:better_whitespace_skip_empty_lines=1
 let g:show_spaces_that_precede_tabs=1
 
 " END Better Whitespace Config }}}
+
+" indentLine config {{{
+
+let g:indentLine_concealcursor = ''
+" Default is 2, and it doesn't work with 0, so 1 is a nice compromise.
+let g:indentLine_conceallevel = 1
+let g:indentLine_fileTypeExclude = ['md', 'tex']
+let g:indentLine_bufNameExclude = ['*.tex', '*.md']
+
+" END indentLine config }}}
 
 " END Appearance Config }}}
 
@@ -469,8 +500,8 @@ augroup Indentation
     autocmd!
     " configure expanding of tabs for various file types
     au BufRead,BufNewFile *.py set expandtab
-    au BufRead,BufNewFile *.c set noexpandtab
-    au BufRead,BufNewFile *.h set noexpandtab
+    au BufRead,BufNewFile *.c set expandtab
+    au BufRead,BufNewFile *.h set expandtab
     au BufRead,BufNewFile Makefile* set noexpandtab
 augroup END
 
@@ -516,6 +547,13 @@ augroup WritingAbbreviations
         \ iabbrev Tbh To be honest |
         \ iabbrev probz probably |
         \ iabbrev cuz because
+augroup END
+
+" indentLines plugin sucks when you're dealing with TeX, MarkDown, etc
+augroup FixIndentLines
+  autocmd!
+  autocmd FileType tex setlocal conceallevel=0
+  autocmd FileType markdown setlocal conceallevel=0
 augroup END
 
 " END Autogroups / Autocommands }}}
