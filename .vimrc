@@ -6,8 +6,9 @@ call plug#begin('~/.vim/plugged')
 
 " Some syntax highlighting, linting, and autocompletion stuff
 Plug 'sheerun/vim-polyglot'
-Plug 'dense-analysis/ale' " Setup on line X
+Plug 'dense-analysis/ale' " Setup on line 244
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Setup on line 235
+Plug 'rizzatti/dash.vim'
 
 " Appearance stuff
 Plug 'ntpeters/vim-better-whitespace' " highlight trailing whitespace
@@ -255,7 +256,7 @@ let g:ale_linters = {
 \     'html': ['prettier'],
 \     'yaml': ['prettier'],
 \     'markdown': ['prettier'],
-\     'c': ['clang', 'clangd', 'clangtidy', 'cppcheck', 'gcc']
+\     'c': ['clangtidy', 'cppcheck', 'gcc']
 \}
 
 " :ALEFix-ers for each language
@@ -554,6 +555,7 @@ augroup FixIndentLines
   autocmd!
   autocmd FileType tex setlocal conceallevel=0
   autocmd FileType markdown setlocal conceallevel=0
+  autocmd FileType md setlocal conceallevel=0
 augroup END
 
 " END Autogroups / Autocommands }}}
