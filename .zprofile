@@ -14,7 +14,6 @@ export LD=/usr/local/gcc-9.2/bin/gcc-9.2
 
 # PATH
 
-export PATH="$PATH:/usr/local/gcc-9.2/bin"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:/usr/local/bin"
@@ -22,7 +21,9 @@ export PATH="$PATH:/sbin"
 export PATH="$PATH:/usr/local"
 export PATH="$PATH:/usr/sbin"
 export PATH="$PATH:/usr/local/sbin"
+export PATH="$PATH:$HOME/Library/Python/3.7/bin"
 export PATH="$PATH:/usr/local/anaconda3/bin"
+export PATH="$PATH:/usr/local/gcc-9.2/bin"
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ]; then

@@ -24,9 +24,10 @@ export TERM=xterm-256color # fix for zsh-autosuggestions colors not being correc
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  tmux
   you-should-use
   zsh-autosuggestions
+  zsh-completions
+  git-it-on
 )
 
 # zplug
