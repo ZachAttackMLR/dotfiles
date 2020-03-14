@@ -131,4 +131,12 @@ function forecast() {
 
 # END Ansiweather Forecast }}}
 
+# Pretty CSV Viewer {{{
+
+function prettycsv() {
+  cat $1 | sed 's/,/ ,/g' | column -t -s, | bat
+}
+
+# END Pretty CSV Viewer }}}
+
 # vim: set filetype=zsh foldmethod=marker:
