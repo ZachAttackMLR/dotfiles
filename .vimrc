@@ -20,12 +20,13 @@ Plug 'Yggdroot/indentLine'
 Plug 'scrooloose/nerdtree'
 
 " Themes
-Plug 'morhetz/gruvbox'
+"Plug 'morhetz/gruvbox'
 Plug 'sainnhe/gruvbox-material'
-Plug 'nightsense/snow'
-Plug 'chriskempson/base16-vim'
-Plug 'arzg/vim-colors-xcode'
-Plug 'nanotech/jellybeans.vim', { 'tag': 'v1.7' }
+"Plug 'nightsense/snow'
+"Plug 'chriskempson/base16-vim'
+"Plug 'arzg/vim-colors-xcode'
+"Plug 'nanotech/jellybeans.vim', { 'tag': 'v1.7' }
+"Plug 'jaredgorski/spacecamp'
 
 " Status bar shiz
 Plug 'vim-airline/vim-airline'
@@ -182,6 +183,7 @@ let g:gruvbox_contrast_dark='dark'
 
 " END jellybeans.vim config }}}
 
+"colorscheme spacecamp
 "colorscheme xcodewwdc
 "colorscheme xcodedark
 "colorscheme snow
