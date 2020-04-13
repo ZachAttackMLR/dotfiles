@@ -1,10 +1,35 @@
-# Zach Gorman's .zprofile
+# Zach Gorman's .zshenv
+
+export OS="$(uname -s)"
 
 # Editor stuff
 export EDITOR='nvim'
 export VISUAL='nvim'
 
-# Directories
+# XDG (for future OS interoperability)
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+
+# Directories and ~ Cleanup
+# config
+export ZDOTDIR=$XDG_CONFIG_HOME/zsh
+export WAKATIME_HOME=$XDG_CONFIG_HOME/wakatime
+export ANSIWEATHERRC=$XDG_CONFIG_HOME/ansiweather/config
+export AWS_CREDENTIALS_FILE=$XDG_CONFIG_HOME/aws/credentials
+export AWS_CONFIG_FILE=$XDG_CONFIG_HOME/aws/config
+export DOCKER_CONFIG=$XDG_CONFIG_HOME/docker
+export HTTPIE_CONFIG_DIR=$XDG_CONFIG_HOME/httpie
+export MPLCONFIGDIR=$XDG_CONFIG_HOME/matplotlib
+
+# cache
+export _Z_DATA=$XDG_CACHE_HOME/.z
+export LESSHISTFILE=$XDG_CACHE_HOME/lesshst
+
+# data
+export AWS_CLI_HISTORY_FILE="$XDG_DATA_HOME/aws/history"
+export CARGO_HOME=$XDG_DATA_HOME/cargo
+
 export ZSH=$HOME/.oh-my-zsh
 
 # GCC

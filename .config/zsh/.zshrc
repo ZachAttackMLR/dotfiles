@@ -145,13 +145,13 @@ setopt hist_ignore_space    # remove command lines from the history list when th
 export HIST_STAMPS="mm/dd/yyyy"
 export HISTSIZE=1000000000
 export SAVEHIST=$HISTSIZE
-export HISTFILE="$HOME/.zsh_history"
+export HISTFILE="$XDG_CACHE_HOME/.zsh_history"
 
 # END History }}}
 
 # Sourcing Other Files {{{
 
-for file in ~/.{aliases,zfunctions,zprofile,secrets}; do
+for file in $XDG_CONFIG_HOME/zsh/.{aliases,zfunctions,zprofile,secrets}; do
   [ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 unset file

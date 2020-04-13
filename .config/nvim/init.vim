@@ -27,6 +27,7 @@ Plug 'sainnhe/gruvbox-material'
 "Plug 'arzg/vim-colors-xcode'
 "Plug 'nanotech/jellybeans.vim', { 'tag': 'v1.7' }
 "Plug 'jaredgorski/spacecamp'
+"Plug 'nerdypepper/vim-colors-plain', { 'branch': 'duotone' }
 
 " Status bar shiz
 Plug 'vim-airline/vim-airline'
@@ -164,7 +165,7 @@ vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 set background=dark
 
 " Purposely not using this for gruvbox-material.
-" Activate for other colorschemes.
+" Activate for other colorschemes (especially plain).
 "set termguicolors
 
 colorscheme gruvbox-material
@@ -187,6 +188,7 @@ let g:gruvbox_contrast_dark='dark'
 "colorscheme xcodewwdc
 "colorscheme xcodedark
 "colorscheme snow
+"colorscheme plain
 
 "let base16colorspace=256  " Access colors present in 256 colorspace
 "colorscheme base16-black-metal
@@ -561,3 +563,4 @@ augroup FixIndentLines
 augroup END
 
 " END Autogroups / Autocommands }}}
+

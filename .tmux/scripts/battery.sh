@@ -4,10 +4,10 @@
 # NOTE: While I primarily use macOS, I've left in the Linux and FreeBSD
 # implementations for compatability
 
-CHRG_STUS=`pmset -g batt | grep -o "discharging"`
-if [ ! -z "$CHRG_STUS" ]; then
-  CUTE_BATTERY_INDICATOR=1
-fi
+#CHRG_STUS=`pmset -g batt | grep -o "discharging"`
+#if [ ! -z "$CHRG_STUS" ]; then
+#  CUTE_BATTERY_INDICATOR=1
+#fi
 
 HEART_FULL=♥
 HEART_EMPTY=♡
