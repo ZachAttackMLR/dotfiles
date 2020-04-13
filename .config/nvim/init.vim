@@ -554,13 +554,14 @@ augroup WritingAbbreviations
         \ iabbrev cuz because
 augroup END
 
+"TODO get this to work
 " indentLines plugin sucks when you're dealing with TeX, MarkDown, etc
-augroup FixIndentLines
-  autocmd!
-  autocmd FileType tex setlocal conceallevel=0
-  autocmd FileType markdown setlocal conceallevel=0
-  autocmd FileType md setlocal conceallevel=0
-augroup END
+"augroup FixIndentLines
+"  autocmd!
+"  autocmd FileType tex setlocal conceallevel=0
+"  autocmd FileType markdown setlocal conceallevel=0
+"  autocmd FileType md setlocal conceallevel=0
+"augroup END
 
 " END Autogroups / Autocommands }}}
 

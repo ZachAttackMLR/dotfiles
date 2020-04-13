@@ -84,8 +84,12 @@ alias emoji='emoj'
 
 # Configs {{{
 
-alias zshrc='vim ~/.zshrc'
-alias vimrc='vim ~/.vimrc'
+alias aliases='vim $XDG_CONFIG_HOME/zsh/.aliases'
+alias zfuncs='vim $XDG_CONFIG_HOME/zsh/.zfunctions'
+alias zshrc='vim $XDG_CONFIG_HOME/zsh/.zshrc'
+alias srczrc='source $XDG_CONFIG_HOME/zsh/.zshrc'
+alias vimrc='vim $XDG_CONFIG_HOME/nvim/init.vim'
+alias tmconf='vim ~/.tmux/tmux.conf'
 
 # END Configs }}}
 
