@@ -1,0 +1,46 @@
+snippet start "make a new file"
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\addtolength{\topmargin}{-.875in}
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+\addtolength{\textheight}{1.75in}
+\addtolength{\textwidth}{1.75in}
+
+\begin{document}
+
+\author{Zachary Gorman}
+\title{$1 \\ $2}
+\date{$3 $4, $5}
+\maketitle
+
+\medskip
+
+\end{document}
+endsnippet
+
+snippet enum "enumerate w/ 3 items"
+\begin{enumerate}
+  \item
+  \item
+  \item
+\end{enumerate}
+endsnippet
+
+snippet item "itemize w/ 3 items"
+\begin{itemize}
+  \item
+  \item
+  \item
+\end{itemize}
+endsnippet
+
+snippet fig "insert figure"
+\begin{figure}[ht]
+  \includegraphics[scale=0.75]{$1}
+  \centering
+\end{figure}
+endsnippet

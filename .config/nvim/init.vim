@@ -9,12 +9,18 @@ Plug 'sheerun/vim-polyglot'
 Plug 'dense-analysis/ale' " Setup on line 244
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Setup on line 235
 Plug 'rizzatti/dash.vim'
+Plug 'wlangstroth/vim-racket'
+
+" Snippets
+Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
 
 " Appearance stuff
 Plug 'ntpeters/vim-better-whitespace' " highlight trailing whitespace
 Plug 'ryanoasis/vim-devicons' " Icons for NERDTree
 Plug 'mhinz/vim-startify' " 'The fancy start screen for Vim'
 Plug 'Yggdroot/indentLine'
+" Plug 'lukas-reineke/indent-blankline.nvim' " TODO get this to work
 
 " File explorer
 Plug 'scrooloose/nerdtree'
@@ -278,11 +284,22 @@ let g:ale_fix_on_save=1
 
 " End ALE Config }}}
 
+" START UltiSnips config {{{
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<c-b>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+" END UltiSnips config }}}
+
 " START coc.nvim config {{{
 " Heavily based on: https://github.com/neoclide/coc.nvim#example-vim-configuration
 " and https://github.com/alichtman/dotfiles/blob/master/.vimrc
 
-" I personally don't use node, but figure if I ever start it'd be good for it to work
 " https://github.com/neoclide/coc.nvim/issues/856
 let g:coc_node_path = "/usr/local/bin/node"
 
@@ -564,4 +581,3 @@ augroup END
 "augroup END
 
 " END Autogroups / Autocommands }}}
-
