@@ -27,8 +27,9 @@ export _Z_DATA=$XDG_CACHE_HOME/.z
 export LESSHISTFILE=$XDG_CACHE_HOME/lesshst
 
 # data
+# TODO get cargo portion working
 export AWS_CLI_HISTORY_FILE="$XDG_DATA_HOME/aws/history"
-export CARGO_HOME=$XDG_DATA_HOME/cargo
+# export CARGO_HOME=$XDG_DATA_HOME/cargo
 
 export ZSH=$HOME/.oh-my-zsh
 
