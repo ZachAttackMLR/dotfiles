@@ -17,7 +17,7 @@ threshold = 15
 style = "bold red"
 
 [memory_usage]
-disabled = false
+disabled = true
 show_percentage = true
 threshold = 75
 symbol = "🐏 "
