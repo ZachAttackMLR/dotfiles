@@ -40,7 +40,27 @@ endsnippet
 
 snippet fig "insert figure"
 \begin{figure}[ht]
-  \includegraphics[scale=0.75]{$1}
+  \includegraphics[scale=0.75]{img/$1}
   \centering
 \end{figure}
+endsnippet
+
+snippet 2fig "minipage of 2 figures"
+\begin{figure}[ht]
+  \centering
+  \begin{minipage}{0.42\textwidth}
+    \centering
+    \includegraphics[width=0.91\textwidth]{img/$1}
+  \end{minipage}\hfill
+  \begin{minipage}{0.42\textwidth}
+    \centering
+    \includegraphics[width=0.91\textwidth]{img/$2}
+  \end{minipage}
+\end{figure}
+endsnippet
+
+snippet al* "align*"
+\begin{align*}
+  \\
+\end{align*}
 endsnippet
