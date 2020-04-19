@@ -2,7 +2,7 @@
 
 export OS="$(uname -s)"
 
-# Editor stuff
+# Defaults
 export EDITOR='nvim'
 export VISUAL='nvim'
 
