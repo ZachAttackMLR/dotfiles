@@ -1,0 +1,20 @@
+# blogs
+https://lukesmith.xyz/rss.xml "tech" "blog"
+https://peppe.rs/index.xml "tech" "blog"
+
+# youtube
+https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA "~Luke Smith (YT)" "tech"
+
+# twitter
+https://twitrss.me/twitter_user_to_rss/?user=EricRWeinstein "~Eric Weinstein (Tw)" "tw"
+https://twitrss.me/twitter_user_to_rss/?user=naval "~Naval (Tw)" "tw"
+https://twitrss.me/twitter_user_to_rss/?user=dotMudge "~Mudge (Tw)" "tw"
+https://twitrss.me/twitter_user_to_rss/?user=thegrugq "~Grugq (Tw)" "tw"
+https://twitrss.me/twitter_user_to_rss/?user=matthew_d_green "~Matt Green (Tw)" "tw"
+https://twitrss.me/twitter_user_to_rss/?user=MichaelWagger "~Wags (Tw)" "tw"
+https://twitrss.me/twitter_user_to_rss/?user=scott_cilento "~Scott (Tw)" "tw"
+https://twitrss.me/twitter_user_to_rss/?user=aaronlichtman "~Aaron (Tw)" "tw"
+
+# random
+https://xkcd.com/rss.xml "fun"
+https://stackoverflow.com/feeds/user/193688 "~Chris Johnsen (SO)" "so"
