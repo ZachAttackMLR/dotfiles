@@ -28,4 +28,16 @@ set scrolloff 10
 set color256
 set icons
 set period 1
-set hidden
+#set hidden
+
+cmd copyto ${{
+    clear; tput cup $(($(tput lines)/3)); tput bold
+    set -f
+    clear; echo "Where are we copying to this time?"
+    dest="$(cut -d' ' -f2- $XDG_CONFIG_HOME/directories | fzf)" &&
+    eval cp -ivr $fx $dest &&
+    [ "$OS" = "Darwin" ] && osascript -e 'display notification "File copied to $dest"' && exit
+    [ "$OS" = "Linux" ] && notify-send "📋 File(s) copied." "File(s) copies to $dest."
+}}
+
+map C copyto
