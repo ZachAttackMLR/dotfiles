@@ -1,5 +1,8 @@
 " What... What have I done?! - Zach Gorman
 
+" Will be set to either Darwin (macOS) or Linux based on what machine I'm on
+let uname = substitute(system('uname'), '\n', '', '')
+
 " START Plugins (using Vim-Plug) {{{
 
 call plug#begin('~/.vim/plugged')
@@ -76,7 +79,6 @@ set clipboard=unnamed          " Enable copying to macOS clipboard
 set noshowmode                 " Don't show mode under statusline w/ mode
 set scrolloff=6                " Minimal num of lines to keep above/below cursor
 set number                     " Enable line numbers
-" set cmdheight=1              " Better display for messages
 set updatetime=300             " Smaller updatetime for CursorHold & CursorHoldI. Also helps CoC response time
 set cursorline                 " Highlight current line
 set hidden                     " Enable buffers to exist in the background
@@ -98,9 +100,6 @@ set wildignore+=.svn,CVS,.git,*.pyc,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*
 set undolevels=1000
 set undofile
 
-" Use gtf to jump to files with these extensions
-" set suffixesadd=.md,.c,.h,.cpp,.py,.tex
-
 set tags=tags
 
 " Don't treat hyphens and underscores like whitespace
@@ -121,9 +120,10 @@ set wrap
 set nolinebreak
 set breakindent
 set breakindentopt=min:40
-" 80 and 120 character guidelines
+
+" 80 character guideline (as god intented)
 highlight ColorColumn ctermbg=lightgrey
-set colorcolumn=80,120
+set colorcolumn=80
 
 " Show “invisible” characters
 set list
@@ -232,8 +232,6 @@ let g:indentLine_bufNameExclude = ['*.tex', '*.md']
 " END Appearance Config }}}
 
 " Start Airline Config {{{
-" Not totally stolen from below, but mostly
-" Credit: https://github.com/alichtman/dotfiles/blob/master/.vimrc
 
 " I change my mind about this more often than I care to admit...
 " let g:airline_theme='base16_eighties'
@@ -279,17 +277,14 @@ let g:ale_fixers = {
 " Run :ALEFix when file is saved
 let g:ale_fix_on_save=1
 
-" Only check one line at a time
-"let g:ale_java_checkstyle_options = '--lines=1'
-
 " End ALE Config }}}
 
 " START UltiSnips config {{{
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-"let g:UltiSnipsExpandTrigger="<tab>"
-"let g:UltiSnipsJumpForwardTrigger="<c-b>"
-"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
@@ -301,7 +296,11 @@ let g:UltiSnipsEditSplit="vertical"
 " and https://github.com/alichtman/dotfiles/blob/master/.vimrc
 
 " https://github.com/neoclide/coc.nvim/issues/856
-let g:coc_node_path = "/usr/local/bin/node"
+if uname == "Darwin"
+  let g:coc_node_path = "/usr/local/bin/node"
+elseif uname == "Linux"
+  let g:coc_node_path = "/usr/bin/node"
+endif
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -315,9 +314,6 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
-" Use <M-space> to trigger completion.
-inoremap <silent><expr> <M-space> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
@@ -559,16 +555,6 @@ augroup SpellcheckAndWritingTools
     autocmd FileType markdown setlocal spell | call litecorrect#init()
     autocmd FileType text setlocal spell | call litecorrect#init()
     hi SpellBad cterm=underline ctermfg=red
-augroup END
-
-" I'm lazy and want 'macros' to just autocorrect like I set up on iOS
-augroup WritingAbbreviations
-    autocmd!
-    autocmd BufRead,BufNewFile *.md,*.txt
-        \ iabbrev tbh to be honest |
-        \ iabbrev Tbh To be honest |
-        \ iabbrev probz probably |
-        \ iabbrev cuz because
 augroup END
 
 "TODO get this to work
