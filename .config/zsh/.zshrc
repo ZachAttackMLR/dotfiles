@@ -208,7 +208,7 @@ export HISTFILE="$XDG_CACHE_HOME/.zsh_history"
 
 # Sourcing Other Files {{{
 
-for file in $XDG_CONFIG_HOME/zsh/.{aliases,zfunctions,zprofile,secrets}; do
+for file in $XDG_CONFIG_HOME/zsh/.{aliases,zfunctions,secrets}; do
   [ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 unset file
