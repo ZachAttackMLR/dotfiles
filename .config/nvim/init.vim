@@ -148,6 +148,13 @@ set autoindent    " copy indent from current line when starting a new lineet noe
 " Map Esc twice to write file
 nnoremap <Esc><Esc> :w<CR>
 
+" Map leader pdf to write and then make a pdf from the .tex file we're editing
+nnoremap <leader>pdf :w <bar> !pdflatex %<cr>
+
+" Map leader er to replace a space with a line break the join the lines
+" Helps when I'm over 80 lines in LaTeX and want a break, but also a join
+nnoremap <leader>er s<cr><Esc>J
+
 " Move the current line above or below
 " These mappings also take a count, so 2]e moves the current line 2 lines below.
 nnoremap [e  :<c-u>execute 'move -1-'. v:count1<cr>
@@ -281,8 +288,11 @@ let g:ale_fix_on_save=1
 
 " START UltiSnips config {{{
 
+" NOTE: While I tried not setting these, if you don't the defaults get mapped
+" since plugins are loaded after the vimrc :(
+
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<c-space>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
