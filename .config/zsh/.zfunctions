@@ -122,6 +122,22 @@ function mute_vol {
 
 # END Sound Stuff }}}
 
+# arch stuff {{{
+
+# TODO: Make this less heinous. Just use for loop to go through divs
+# inspired by https://www.reddit.com/r/archlinux/comments/g6lxct/getting_the_latest_arch_linux_news_entry/
+function archnews() {
+   curl -s https://www.archlinux.org/ | xmllint --html --xpath '//div[@id="news"]/div[1]' -  | pandoc -f html -t plain
+   echo -e '\n\n'
+   curl -s https://www.archlinux.org/ | xmllint --html --xpath '//div[@id="news"]/div[2]' -  | pandoc -f html -t plain
+   echo -e '\n\n'
+   curl -s https://www.archlinux.org/ | xmllint --html --xpath '//div[@id="news"]/div[3]' -  | pandoc -f html -t plain
+   echo -e '\n\n'
+   curl -s https://www.archlinux.org/ | xmllint --html --xpath '//div[@id="news"]/div[4]' -  | pandoc -f html -t plain
+}
+
+# arch stuff }}}
+
 # Ansiweather Forecast {{{
 
 # I didn't like that I couldn't display the current weather and the forecast in
