@@ -15,6 +15,9 @@ https://twitrss.me/twitter_user_to_rss/?user=MichaelWagger "~Wags (Tw)" "tw"
 https://twitrss.me/twitter_user_to_rss/?user=scott_cilento "~Scott (Tw)" "tw"
 https://twitrss.me/twitter_user_to_rss/?user=aaronlichtman "~Aaron (Tw)" "tw"
 
+# arch news
+https://www.archlinux.org/feeds/news/ "tech"
+
 # random
 https://xkcd.com/rss.xml "fun"
 https://stackoverflow.com/feeds/user/193688 "~Chris Johnsen (SO)" "so"
