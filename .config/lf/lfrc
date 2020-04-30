@@ -30,6 +30,10 @@ set icons
 set period 1
 #set hidden
 
+cmd open ${{
+    [ "$(uname -s)" = "Darwin" ] && open $f;
+}}
+
 cmd copyto ${{
     clear; tput cup $(($(tput lines)/3)); tput bold
     set -f
@@ -41,3 +45,5 @@ cmd copyto ${{
 }}
 
 map C copyto
+map o open $f
+#map P $/Users/zmac/.config/lf/draw_img.sh $f
