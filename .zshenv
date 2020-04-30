@@ -3,6 +3,7 @@
 export OS="$(uname -s)"
 
 # Defaults
+[ "$OS" = "Linux" ] && export TERMINAL='st'
 export EDITOR='nvim'
 export VISUAL='nvim'
 
@@ -27,11 +28,15 @@ export _Z_DATA=$XDG_CACHE_HOME/.z
 export LESSHISTFILE=$XDG_CACHE_HOME/lesshst
 
 # data
-# TODO get cargo portion working
+# TODO get cargo portion working on macos
 export AWS_CLI_HISTORY_FILE="$XDG_DATA_HOME/aws/history"
-# export CARGO_HOME=$XDG_DATA_HOME/cargo
+[ "$OS" = "Linux" ] && export CARGO_HOME=$XDG_DATA_HOME/cargo
 
-export ZSH=$HOME/.oh-my-zsh
+if [ "$OS" = "Darwin" ]; then
+  export ZSH=$HOME/.oh-my-zsh
+elif [ "$OS" = "Linux" ]; then
+  export ZSH=$HOME/.config/.oh-my-zsh
+fi
 
 # lf icons {{{
 
@@ -101,21 +106,26 @@ ex=🎯:\
 
 # GCC
 
-export CC=/usr/local/gcc-9.2/bin/gcc-9.2
-export LD=/usr/local/gcc-9.2/bin/gcc-9.2
+if [ "$OS" = "Darwin" ]; then
+  export CC=/usr/local/gcc-9.2/bin/gcc-9.2
+  export LD=/usr/local/gcc-9.2/bin/gcc-9.2
+fi
 
 # PATH
 
-export PATH="$HOME/.cargo/bin:$PATH"
+[ "$OS" = "Darwin" ] && export PATH="$HOME/.cargo/bin:$PATH"
+[ "$OS" = "Linux" ] && export PATH="$XDG_DATA_HOME/.cargo/bin:$PATH"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:/usr/local/bin"
 export PATH="$PATH:/sbin"
 export PATH="$PATH:/usr/local"
 export PATH="$PATH:/usr/sbin"
 export PATH="$PATH:/usr/local/sbin"
-export PATH="$PATH:$HOME/Library/Python/3.7/bin"
-export PATH="$PATH:/usr/local/anaconda3/bin"
-export PATH="$PATH:/usr/local/gcc-9.2/bin"
+if [ "$OS" = "Darwin" ]; then
+  export PATH="$PATH:$HOME/Library/Python/3.7/bin"
+  export PATH="$PATH:/usr/local/anaconda3/bin"
+  export PATH="$PATH:/usr/local/gcc-9.2/bin"
+fi
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ]; then

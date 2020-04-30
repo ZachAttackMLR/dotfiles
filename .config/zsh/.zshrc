@@ -22,13 +22,17 @@ export TERM=xterm-256color # fix for zsh-autosuggestions colors not being correc
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  git
-  you-should-use
-  zsh-autosuggestions
-  zsh-completions
-  git-it-on
-)
+if [ "$OS" = "Darwin" ]; then
+  plugins=(
+    git
+    you-should-use
+    zsh-autosuggestions
+    zsh-completions
+    git-it-on
+  )
+elif [ "$OS" = "Linux" ]; then
+  plugins=(git)
+fi
 
 # zplug
 source ~/.zplug/init.zsh
@@ -46,7 +50,8 @@ if ! zplug check; then
 fi
 
 # z - https://github.com/rupa/z
-source $(brew --prefix)/etc/profile.d/z.sh
+[ "$OS" = "Darwin" ] && source $(brew --prefix)/etc/profile.d/z.sh
+[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 
 # fz - https://github.com/changyuheng/fz#macos
 FZ_CMD=j
@@ -64,15 +69,9 @@ setopt mark_dirs
 
 source $ZSH/oh-my-zsh.sh
 
-# Autojump - keeping this just in case
-#[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
-
 # START vi mode {{{
 #
-# TODO
-# I'd like to get this working at some point, but don't currently have time, so am leaving this here
 # Stolen from https://github.com/LukeSmithxyz/voidrice/blob/master/.config/zsh/.zshrc
-
 # vi mode
 bindkey -v
 export KEYTIMEOUT=1
@@ -175,7 +174,6 @@ bindkey -M isearch . self-insert
 # dito for searching in menu selection
 bindkey -M menuselect . self-insert
 
-fpath=(/usr/local/share/zsh-completions $fpath)
 autoload -U compinit && compinit
 
 # END Completion }}}
@@ -187,8 +185,6 @@ autoload -U compinit && compinit
 # END FZF Stuff }}}
 
 # safe-rm Stuff {{{
-
-# if you're wondering wtf this is, it's form ~/.aliases
 
 # Prompt to confirm rm DIR/*
 unsetopt RM_STAR_SILENT
@@ -218,5 +214,21 @@ unset file
 
 # END Sourcing Other Files }}}
 
-days-until
-tls
+# Startup {{{
+
+# stolen from alichtman/dotfiles
+function execute_cmd_if_exists() {
+    if hash "$1" 2>/dev/null; then
+        "$1"
+    fi
+}
+
+execute_cmd_if_exists days-until
+execute_cmd_if_exists tls
+
+if [ "$OS" = "Linux" ]; then
+  source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+  source /usr/share/zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh
+fi
+
+# END Startup }}}

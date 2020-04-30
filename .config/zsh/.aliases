@@ -1,33 +1,44 @@
 # ls Stuff {{{
 
-alias ls='LC_COLLATE=cs_CZ.ISO8859-2 colorls -1A --sd --gs'
-alias sl='ls' # for typo correction :)
-alias ll='LC_COLLATE=cs_CZ.ISO8859-2 colorls -1A --sd -l --gs'
-alias lsd='lsd -1a --group-dirs first'
-alias tree='ls --tree -I=.DS_Store'
+if [ "$OS" = "Darwin" ]; then
+  alias ls='LC_COLLATE=cs_CZ.ISO8859-2 colorls -1A --sd --gs'
+  alias ll='LC_COLLATE=cs_CZ.ISO8859-2 colorls -1A --sd -l --gs'
+  alias tree='ls --tree -I=.DS_Store'
+elif [ "$OS" = "Linux" ]; then
+  alias ls='lsd -1A --icon-theme unicode --group-dirs first'
+  alias ll='lsd -l -1A --icon-theme unicode --group-dirs first'
+fi
+
 alias ldown='ls ~/Downloads/'
+alias sl='ls' # for typo correction :)
 
 # END ls Stuff }}}
 
 # Update Stuff {{{
 
-alias brewup='brew update; brew upgrade; brew cask upgrade; brew cleanup;' # excluded brew doctor
 alias cargo-update='cargo install-update -a'
 alias vimup="nvim '+PlugUpdate' '+PlugUpgrade' '+CocUpdate' '+qall';"
-alias up='upgrade_oh_my_zsh; rustup update; cargo-update; npm update; brewup; vimup; zplug update;'
 
+if [ "$OS" = "Darwin" ]; then
+  alias brewup='brew update; brew upgrade; brew cask upgrade; brew cleanup;' # excluded brew doctor
+  alias up='upgrade_oh_my_zsh; rustup update; cargo-update; npm update; brewup; vimup; zplug update;'
+elif [ "$OS" = "Linux" ]; then
+  alias up='upgrade_oh_my_zsh; cargo-update; rustup update; npm update; vimup; zplug update; echo -e "\n\033[0;34mPacman Updates:\033[0m\n"; checkupdates'
+fi
 # END Update Stuff }}}
 
 # macOS Stuff {{{
 
-alias unthrottle-time-machine='sudo sysctl debug.lowpri_throttle_enabled=0;'
-alias throttle-time-machine='sudo sysctl debug.lowpri_throttle_enabled=1;'
+if [ "$OS" = "Darwin" ]; then
+  alias unthrottle-time-machine='sudo sysctl debug.lowpri_throttle_enabled=0;'
+  alias throttle-time-machine='sudo sysctl debug.lowpri_throttle_enabled=1;'
 
-### Checking mute and adjusting volume of computer via terminal
-alias chkvol='osascript -e "output volume of (get volume settings)"'
-alias chkmute='osascript -e "output muted of (get volume settings)"'
-alias setvol='set_volume'
-alias mute='mute_vol'
+  ### Checking mute and adjusting volume of computer via terminal
+  alias chkvol='osascript -e "output volume of (get volume settings)"'
+  alias chkmute='osascript -e "output muted of (get volume settings)"'
+  alias setvol='set_volume'
+  alias mute='mute_vol'
+fi
 
 # END macOS Stuff }}}
 
@@ -40,6 +51,7 @@ alias rcc='radix-calc --all'
 
 # Docker Stuff {{{
 
+[ "$OS" = "Linux" ] && alias startdocker='sudo systemctl start docker.service'
 alias docker='sudo docker'
 alias dockcomp='docker-compose'
 alias dockprune="echo '\n\033[0;34mPruning Containers...\033[0m' && docker container prune -f && echo '\n\033[0;34mPruning Images...\033[0m' && docker image prune -f && echo '\n\033[0;34mPruning System...\033[0m' && docker system prune -f"
@@ -49,13 +61,10 @@ alias dockprune="echo '\n\033[0;34mPruning Containers...\033[0m' && docker conta
 # Convenience {{{
 
 alias vim='nvim'
-alias google="googler --count 3 -l en"
 alias g='glow -p'
-alias py='python3'
-alias p3='pip3'
+[ "$OS" = "Darwin" ] && alias py='python3' && alias p3='pip3'
 alias fuck='eval $(TF_ALIAS=fuck PYTHONIOENCODING=utf-8 thefuck $(fc -ln -1))'
 alias please='sudo $(fc -ln -1)' # Rerun last command with sudo
-alias news='newsroom'
 alias weather='ansiweather | sed "s/Sunrise.*S/S/"'
 alias weather-detailed='curl wttr.in'
 alias rm="safe-rm"
@@ -75,7 +84,6 @@ alias pipes='pipes.sh -f 75 -t 3 -B'
 # Shpotify
 alias spot='spotify'
 alias spotstat='spot status'
-alias sspt='launch Spotify && sleep 5 && spt'
 
 alias reddit='tuir'
 alias emoji='emoj'
