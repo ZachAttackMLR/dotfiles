@@ -5,7 +5,7 @@ are in all their glory (or shame).
 
 ![tmux_img](img/terminal_tmux.png)
 
-Written on and for macOS using iTerm2, but I'm slowly these language agnostic
+Written on and for macOS using iTerm2, but I'm slowly making these OS agnostic
 so I can run the same config on my Arch Linux machine.
 
 ## Inspired By
