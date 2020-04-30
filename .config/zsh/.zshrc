@@ -33,6 +33,7 @@ plugins=(
 # zplug
 source ~/.zplug/init.zsh
 
+zplug "code-stats/code-stats-zsh", from:gitlab, use:"codestats.plugin.zsh"
 zplug "changyuheng/zsh-interactive-cd"
 zplug "changyuheng/fz", defer:1
 zplug "rupa/z", use:z.sh
@@ -208,7 +209,9 @@ export HISTFILE="$XDG_CACHE_HOME/.zsh_history"
 
 # Sourcing Other Files {{{
 
-for file in $XDG_CONFIG_HOME/zsh/.{aliases,zfunctions,secrets}; do
+source "$HOME/.secrets"
+
+for file in $XDG_CONFIG_HOME/zsh/.{aliases,zfunctions}; do
   [ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 unset file
