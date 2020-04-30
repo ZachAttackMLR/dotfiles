@@ -155,6 +155,11 @@ nnoremap <leader>pdf :w <bar> !pdflatex %<cr>
 " Helps when I'm over 80 lines in LaTeX and want a break, but also a join
 nnoremap <leader>er s<cr><Esc>J
 
+" remap <c-a> and <c-x> (incrementing and decrementing numbers) to same thing
+" but with alt
+nnoremap <A-a> <C-a>
+nnoremap <A-x> <C-x>
+
 " Move the current line above or below
 " These mappings also take a count, so 2]e moves the current line 2 lines below.
 nnoremap [e  :<c-u>execute 'move -1-'. v:count1<cr>
@@ -403,9 +408,7 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 " all from https://gitlab.com/code-stats/code-stats-vim
 
-" I was gonna remove this for pushing to dotfiles, but if you want to give me
-" credit for your work go ahead? I guess? lol
-let g:codestats_api_key = 'SFMyNTY.V21GamFFRjBkR0ZqYTAxTVVnPT0jI05UZzRNdz09.yz-3ONv-pOoYqt1LdSngFVEBxCFTqWphjgcpXuigTz8'
+let g:codestats_api_key =$CODESTATS_API_KEY
 
 let g:airline_section_x = airline#section#create_right(['tagbar', 'filetype', '%{CodeStatsXp()}'])
 
