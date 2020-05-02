@@ -22,6 +22,8 @@ export AWS_CONFIG_FILE=$XDG_CONFIG_HOME/aws/config
 export DOCKER_CONFIG=$XDG_CONFIG_HOME/docker
 export HTTPIE_CONFIG_DIR=$XDG_CONFIG_HOME/httpie
 export MPLCONFIGDIR=$XDG_CONFIG_HOME/matplotlib
+export TMUX_PLUGIN_MANAGER_PATH=$XDG_CONFIG_HOME/tmux/plugins/
+export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
 
 # cache
 export _Z_DATA=$XDG_CACHE_HOME/.z
