@@ -68,6 +68,7 @@ alias please='sudo $(fc -ln -1)' # Rerun last command with sudo
 alias weather='ansiweather | sed "s/Sunrise.*S/S/"'
 alias weather-detailed='curl wttr.in'
 alias rm="safe-rm"
+alias f='fzf'
 
 # Autojump / z / fz
 alias j='z'
