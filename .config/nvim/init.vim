@@ -5,14 +5,16 @@ let uname = substitute(system('uname'), '\n', '', '')
 
 " START Plugins (using Vim-Plug) {{{
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.local/share/nvim/plugged')
 
 " Some syntax highlighting, linting, and autocompletion stuff
+" I'm as sad as you that the last two of these are needed :(
 Plug 'sheerun/vim-polyglot'
 Plug 'dense-analysis/ale' " Setup on line 244
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Setup on line 235
 Plug 'rizzatti/dash.vim'
 Plug 'wlangstroth/vim-racket'
+Plug 'adimit/prolog.vim'
 
 " Snippets
 Plug 'honza/vim-snippets'
