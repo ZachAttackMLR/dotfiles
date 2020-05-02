@@ -12,6 +12,9 @@ eval "$(starship init zsh)"
 export BETTER_EXCEPTIONS=1 # Python Better Exceptions
 export BAT_THEME="1337"
 export TERM=xterm-256color # fix for zsh-autosuggestions colors not being correct in tmux
+export FZF_DEFAULT_COMMAND='fd -H -E ".git" -E ".DS_Store" --type file --follow --color=always'
+export FZF_DEFAULT_OPTS="--cycle --ansi"
+export FZF_BASE="/usr/local/bin/fzf"
 
 # END Env Vars }}}
 
@@ -37,7 +40,6 @@ fi
 # zplug
 source ~/.zplug/init.zsh
 
-zplug "code-stats/code-stats-zsh", from:gitlab, use:"codestats.plugin.zsh"
 zplug "changyuheng/zsh-interactive-cd"
 zplug "changyuheng/fz", defer:1
 zplug "rupa/z", use:z.sh
@@ -105,6 +107,10 @@ echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 # END vi mode }}}
+
+# disable "r" command (which runs previous executed command)
+# so that it doesnt interfere with the binary for "r" language.
+disable r
 
 # END zsh Stuff }}}
 
@@ -194,7 +200,8 @@ setopt RM_STAR_WAIT
 
 # History {{{
 
-setopt hist_ignore_space    # remove command lines from the history list when the first character on the line is a space
+# remove command lines from the history list when the first character on the line is a space
+setopt hist_ignore_space
 
 export HIST_STAMPS="mm/dd/yyyy"
 export HISTSIZE=1000000000
