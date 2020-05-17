@@ -67,21 +67,25 @@ function backup-dots() {
 
 # Make a directory and cd into it.
 function mk() {
-	mkdir "$1" && cd "$1" || exit;
+  mkdir "$1" && cd "$1" || exit;
 }
 
 # Copy file contents to clipboard
 function copy() {
-	pbcopy < "$1"
+  if [ "$OS" = "Darwin" ]; then
+    pbcopy < "$1"
+  elif [ "$OS" = "Linux" ]; then
+    xsel -i < "$1"
+  fi
 }
 
 function cheat() {
-	curl cheat.sh/$1
+  curl cheat.sh/$1
 }
 
 # Prettier diffs
 function pdiff() {
-	diff -u $1 $2 | diff-so-fancy
+  diff -u $1 $2 | diff-so-fancy
 }
 
 # END Shortcuts }}}
@@ -102,8 +106,28 @@ tm() {
 
 # END tmux }}}
 
+# ranger {{{
+
+# cd on exit from ranger with q
+function ranger {
+    local IFS=$'\t\n'
+    local tempfile="$(mktemp -t tmp.XXXXXX)"
+    local ranger_cmd=(
+        command
+        ranger
+        --cmd="map q chain shell echo %d > "$tempfile"; quitall"
+    )
+
+    ${ranger_cmd[@]} "$@"
+    if [[ -f "$tempfile" ]] && [[ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]]; then
+        cd -- "$(cat "$tempfile")" || return
+    fi
+    command rm -f -- "$tempfile" 2>/dev/null
+}
+
+# END ranger }}}
+
 # Everything above this line is stolen, everything below is original
-# Everything below this line also will only work on macOS (mostly)
 
 # Sound Stuff {{{
 
@@ -164,12 +188,8 @@ function prettycsv() {
 
 # Inspired by:
 # https://apple.stackexchange.com/questions/162464/time-machine-progress-from-the-command-line
-# WARNING:
-# So this won't damage anything in any way, but this isn't *totally* tested
-# since I can't reach some of the states at the time of writing this function.
-# In other words, if you get weird output in some cases, assume the case
-# reached is a nested if, and try again in a few seconds once a different case
-# is reached
+# If anybody ever looks at these, don't use this. It's not exactly functional.
+# FIXME displays wrong info 3/4 of the time
 function backup-info() {
   TMPHASE=`tmutil currentPhase`
   if [ "BackupNotRunning" == "$TMPHASE" ]

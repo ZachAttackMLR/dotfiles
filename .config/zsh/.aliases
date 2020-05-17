@@ -3,10 +3,10 @@
 if [ "$OS" = "Darwin" ]; then
   alias ls='LC_COLLATE=cs_CZ.ISO8859-2 colorls -1A --sd --gs'
   alias ll='LC_COLLATE=cs_CZ.ISO8859-2 colorls -1A --sd -l --gs'
-  alias tree='ls --tree -I=.DS_Store'
 elif [ "$OS" = "Linux" ]; then
   alias ls='lsd -1A --icon-theme unicode --group-dirs first'
   alias ll='lsd -l -1A --icon-theme unicode --group-dirs first'
+  alias tree='ls --tree -I=.DS_Store'
 fi
 
 alias ldown='ls ~/Downloads/'
@@ -81,6 +81,7 @@ alias jj='zz'
 alias trip='yes "$(seq 231 -1 16)" | while read i; do printf "\x1b[48;5;${i}m\n"; sleep .02; done'
 alias matrix='unimatrix -s 93'
 alias pipes='pipes.sh -f 75 -t 3 -B'
+alias vicheat='sxiv ~/notes/img/vim_cheatsheet.gif'
 
 # Shpotify
 alias spot='spotify'
@@ -98,7 +99,10 @@ alias zfuncs='vim $XDG_CONFIG_HOME/zsh/.zfunctions'
 alias zshrc='vim $XDG_CONFIG_HOME/zsh/.zshrc'
 alias srczrc='source $XDG_CONFIG_HOME/zsh/.zshrc'
 alias vimrc='vim $XDG_CONFIG_HOME/nvim/init.vim'
-alias tmconf='vim ~/.tmux/tmux.conf'
+alias tmconf='vim $XDG_CONFIG_HOME/tmux/tmux.conf'
+
+# Needed to follow XDG
+alias gpg='gpg2 --homedir "$XDG_DATA_HOME"/gnupg'
 
 # END Configs }}}
 

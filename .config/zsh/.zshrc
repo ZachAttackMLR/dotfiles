@@ -231,7 +231,7 @@ function execute_cmd_if_exists() {
 }
 
 execute_cmd_if_exists days-until
-execute_cmd_if_exists tls
+# execute_cmd_if_exists tls
 
 if [ "$OS" = "Linux" ]; then
   source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
