@@ -14,30 +14,43 @@ export XDG_CACHE_HOME="$HOME/.cache"
 
 # Directories and ~ Cleanup
 # config
-export ZDOTDIR=$XDG_CONFIG_HOME/zsh
-export WAKATIME_HOME=$XDG_CONFIG_HOME/wakatime
-export ANSIWEATHERRC=$XDG_CONFIG_HOME/ansiweather/config
-export AWS_CREDENTIALS_FILE=$XDG_CONFIG_HOME/aws/credentials
-export AWS_CONFIG_FILE=$XDG_CONFIG_HOME/aws/config
-export DOCKER_CONFIG=$XDG_CONFIG_HOME/docker
-export HTTPIE_CONFIG_DIR=$XDG_CONFIG_HOME/httpie
-export MPLCONFIGDIR=$XDG_CONFIG_HOME/matplotlib
-export TMUX_PLUGIN_MANAGER_PATH=$XDG_CONFIG_HOME/tmux/plugins/
-export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
-
-# cache
-export _Z_DATA=$XDG_CACHE_HOME/.z
-export LESSHISTFILE=$XDG_CACHE_HOME/lesshst
+export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
+export WAKATIME_HOME="$XDG_CONFIG_HOME"/wakatime
+export ANSIWEATHERRC="$XDG_CONFIG_HOME"/ansiweather/config
+export AWS_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
+export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+export HTTPIE_CONFIG_DIR="$XDG_CONFIG_HOME"/httpie
+export MPLCONFIGDIR="$XDG_CONFIG_HOME"/matplotlib
+export TMUX_PLUGIN_MANAGER_PATH="$XDG_CONFIG_HOME"/tmux/plugins/
+export BUNDLE_USER_CONFIG="$XDG_CONFIG_HOME"/bundle
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/config
 
 # data
 # TODO get cargo portion working on macos
-export AWS_CLI_HISTORY_FILE="$XDG_DATA_HOME/aws/history"
-[ "$OS" = "Linux" ] && export CARGO_HOME=$XDG_DATA_HOME/cargo
+export AWS_CLI_HISTORY_FILE="$XDG_DATA_HOME"/aws/history
+export CARGO_HOME="$XDG_DATA_HOME/"cargo
+export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME"/bundle
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+export PLTUSERHOME="$XDG_DATA_HOME"/racket
+export GEM_HOME="$XDG_DATA_HOME"/gem
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+
+# cache
+export _Z_DATA="$XDG_CACHE_HOME"/.z
+export LESSHISTFILE="$XDG_CACHE_HOME"/lesshst
+export BUNDLE_USER_CACHE="$XDG_CACHE_HOME"/bundle
+export NPM_CONFIG_CACHE="$XDG_CACHE_HOME"/npm
+export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
+
+# runtime
+#export NPM_CONFIG_TMP="$XDG_RUNTIME_DIR"/npm
 
 if [ "$OS" = "Darwin" ]; then
-  export ZSH=$HOME/.oh-my-zsh
+  export ZSH="$HOME"/.oh-my-zsh
 elif [ "$OS" = "Linux" ]; then
-  export ZSH=$HOME/.config/.oh-my-zsh
+  export ZSH="$HOME"/.config/.oh-my-zsh
 fi
 
 # lf icons {{{
@@ -115,18 +128,18 @@ fi
 
 # PATH
 
-[ "$OS" = "Darwin" ] && export PATH="$HOME/.cargo/bin:$PATH"
-[ "$OS" = "Linux" ] && export PATH="$XDG_DATA_HOME/.cargo/bin:$PATH"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:/usr/local/bin"
 export PATH="$PATH:/sbin"
 export PATH="$PATH:/usr/local"
 export PATH="$PATH:/usr/sbin"
 export PATH="$PATH:/usr/local/sbin"
+export PATH="$CARGO_HOME/bin:$PATH"
 if [ "$OS" = "Darwin" ]; then
   export PATH="$PATH:$HOME/Library/Python/3.7/bin"
   export PATH="$PATH:/usr/local/anaconda3/bin"
   export PATH="$PATH:/usr/local/gcc-9.2/bin"
+  export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
 fi
 
 # set PATH so it includes user's private bin if it exists
