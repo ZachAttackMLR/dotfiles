@@ -3,18 +3,16 @@
 " Will be set to either Darwin (macOS) or Linux based on what machine I'm on
 let uname = substitute(system('uname'), '\n', '', '')
 
-" START Plugins (using Vim-Plug) {{{
+" Plugins (using Vim-Plug) {{{
 
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Some syntax highlighting, linting, and autocompletion stuff
-" I'm as sad as you that the last two of these are needed :(
 Plug 'sheerun/vim-polyglot'
 Plug 'dense-analysis/ale' " Setup on line 244
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Setup on line 235
+Plug 'davidhalter/jedi-vim'
 Plug 'rizzatti/dash.vim'
-Plug 'wlangstroth/vim-racket'
-Plug 'adimit/prolog.vim'
 
 " Snippets
 Plug 'honza/vim-snippets'
@@ -68,7 +66,7 @@ call plug#end()
 
 " END Plugins }}}
 
-" START General Settings {{{
+" General Settings {{{
 " A bunch of this I stole from https://github.com/alichtman/dotfiles/blob/master/.vimrc
 
 set secure
@@ -131,7 +129,7 @@ set colorcolumn=80
 set list
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 
-" START Indentation Config {{{
+"  Indentation Config {{{
 
 set copyindent
 set preserveindent
@@ -145,7 +143,7 @@ set autoindent    " copy indent from current line when starting a new lineet noe
 
 " END Indentation Config }}}
 
-" START mappings {{{
+" mappings {{{
 
 " Map Esc twice to write file
 nnoremap <Esc><Esc> :w<CR>
@@ -178,7 +176,7 @@ vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 " END General Settings }}}
 
-" START Appearance Config {{{
+" Appearance Config {{{
 
 " Colorscheme Configs {{{
 
@@ -215,7 +213,7 @@ let g:gruvbox_contrast_dark='dark'
 
 " END Colorscheme Configs }}}
 
-" START Vim Dev Icons {{{
+" Vim Dev Icons {{{
 
 let g:WebDevIconsUnicodeGlyphDoubleWidth = 0
 let g:WebDevIconsOS = 'Darwin'
@@ -224,7 +222,7 @@ let g:webdevicons_conceal_nerdtree_brackets = 0
 
 " END Vim Dev Icons }}}
 
-" START Better Whitespace Config {{{
+" Better Whitespace Config {{{
 
 let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
@@ -245,7 +243,7 @@ let g:indentLine_bufNameExclude = ['*.tex', '*.md']
 
 " END Appearance Config }}}
 
-" Start Airline Config {{{
+" Airline Config {{{
 
 " I change my mind about this more often than I care to admit...
 " let g:airline_theme='base16_eighties'
@@ -263,7 +261,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 
 " END Airline Config }}}
 
-" Start ALE Config {{{
+" ALE Config {{{
 
 " Enabling both loclist and quickfix, and enabling opening the list in a vnew
 let g:ale_set_loclist=1
@@ -278,14 +276,16 @@ let g:ale_linters = {
 \     'html': ['prettier'],
 \     'yaml': ['prettier'],
 \     'markdown': ['prettier'],
-\     'c': ['clangtidy', 'cppcheck', 'gcc']
+\     'c': ['clangtidy', 'gcc'],
+\     'cpp': ['clangtidy', 'ccls', 'cppcheck', 'cpplint']
 \}
 
 " :ALEFix-ers for each language
 let g:ale_fixers = {
 \     '*': ['remove_trailing_lines', 'trim_whitespace'],
 \     'java': ['google_java_format'],
-\     'c': ['clang-format']
+\     'c': ['clang-format'],
+\     'cpp': ['clang-format']
 \}
 
 " Run :ALEFix when file is saved
@@ -293,7 +293,7 @@ let g:ale_fix_on_save=1
 
 " End ALE Config }}}
 
-" START UltiSnips config {{{
+" UltiSnips config {{{
 
 " NOTE: While I tried not setting these, if you don't the defaults get mapped
 " since plugins are loaded after the vimrc :(
@@ -308,7 +308,7 @@ let g:UltiSnipsEditSplit="vertical"
 
 " END UltiSnips config }}}
 
-" START coc.nvim config {{{
+" coc.nvim config {{{
 " Heavily based on: https://github.com/neoclide/coc.nvim#example-vim-configuration
 " and https://github.com/alichtman/dotfiles/blob/master/.vimrc
 
@@ -406,7 +406,17 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 " END coc.nvim Config }}}}}}
 
-" START CodeStats config {{{
+" jedi-vim {{{
+
+" Fix lagginess with large python libraries
+" https://github.com/davidhalter/jedi-vim/issues/217
+let g:jedi#popup_on_dot = 0
+
+let g:jedi#documentation_command = "H"
+
+" END jedi-vim }}}
+
+" CodeStats config {{{
 
 " all from https://gitlab.com/code-stats/code-stats-vim
 
@@ -416,7 +426,7 @@ let g:airline_section_x = airline#section#create_right(['tagbar', 'filetype', '%
 
 " END CodeStats Config }}}
 
-" START vim-startify config {{{
+" vim-startify config {{{
 
 let g:startify_lists = [
             \ { 'type': 'files',     'header': ['   MRU']            },
@@ -473,14 +483,14 @@ let g:startify_session_autoload = 1
 
 " END vim-startify config }}}
 
-" START NERDTree Config {{{
+" NERDTree Config {{{
 
 let NERDTreeShowHidden = 1
 let NERDTreeStatusline = 0
 
 " END NERDTree Config }}}
 
-" START Autogroups / Autocommands {{{
+" Autogroups / Autocommands {{{
 
 " Credit: https://github.com/alichtman/dotfiles/blob/master/.vimrc
 augroup AutoCloseVim
