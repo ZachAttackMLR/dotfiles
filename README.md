@@ -3,6 +3,9 @@
 I've put way more time and effort into these than I care to admit, but here they
 are in all their glory (or shame).
 
+Written on and for both macOS using iTerm2, and Arch Linux (btw) using
+[Luke Smith's fork of st](https://github.com/LukeSmithxyz/st)
+
 ## macOS
 
 ![tmux_img](img/terminal_tmux.png)
@@ -10,9 +13,6 @@ are in all their glory (or shame).
 ## Arch
 
 ![arch_img](img/arch.png)
-
-Written on and for both macOS using iTerm2, and Arch Linux (btw) using
-[Luke Smith's fork of st](https://github.com/LukeSmithxyz/st)
 
 ## Inspired By
 
