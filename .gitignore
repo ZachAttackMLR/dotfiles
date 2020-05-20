@@ -4,6 +4,7 @@
 .config/zsh/.zcompdump*
 .tmux/plugins
 .tmux/resurrect
+.config/aws
 .pypirc
 .ssh
 .vim

@@ -1,0 +1,61 @@
+# Zach's Simple X Hotkey Daemon Key Map
+
+# Basics
+
+# launch a new terminal tile
+super + Return
+    $TERMINAL
+
+# launch a new program like how spotlight does it on mac
+super + @space
+    dmenu_run
+
+# reload sxhkd
+super + Escape
+    pkill -USR1 -x sxhkd
+
+# open browser
+super + o; b
+    firefox
+
+# open signal
+super + o; s
+    signal-desktop
+
+# focus node in given direction
+super + {h,j,k,l}
+    bspc node -f {west,south,north,east}
+
+# swap to desktop, or if shift is pressed, send node to desktop
+super + {_,shift + }{1-9,0}
+    bspc {desktop -f,node -d} '^{1-9,10}'
+
+# shift focus to the last used desktop (useful for quick swapping back and forth
+super + backslash
+    bspc desktop last --focus
+
+super + shift + j
+    bspc node focused -t \~floating
+
+# preselect where the next window is going to open
+super + ctrl + {h,j,k,l}
+    bspc node -p {west,south,north,east}
+
+# Close current window
+super + x
+    bspc node -c
+
+# swap the current node with the biggest
+super + shift + k
+    bspc node -s biggest
+
+#TODO
+
+# restarting bspwm iirc
+#super + alt + Escape
+#    pkill -x panel; bspc quit
+
+# implement swap once I figure out what it is lol
+# focus the node in the given direction
+#super + {_,shift + }{h,j,k,l}
+#    bspc node -{f,s} {west,south,north,east}

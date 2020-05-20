@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# Don't currently use any gnome apps, so this is commented, but if I end up
+# starting to use some, I'm leaving this in so I don't have to google it
+# at that point
+# Gnome apps start slow if services fail, so we fix it
+# dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
+
+# mpd &                   # TODO eventually get mpd working
+remaps &                  # get some remaps going
+launch_polybar &          # start polybar via script
+setbg &                   # backup script
+xcompmgr &                # for transparency
+sxhkd &                   # so my shortcuts actually work
+dunst &                   # notifications
+unclutter &
