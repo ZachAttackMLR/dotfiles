@@ -43,7 +43,7 @@ function dots() {
 function backup-dots() {
 	echo "Backing up..."
 	(
-	shallow-backup -no_splash -dotfiles -separate_dotfiles_repo;
+	shallow-backup -no-splash -backup-dots -separate-dotfiles-repo;
 	cd "$HOME/shallow-backup/dotfiles/" || exit
 	git add .
 
@@ -75,7 +75,7 @@ function copy() {
   if [ "$OS" = "Darwin" ]; then
     pbcopy < "$1"
   elif [ "$OS" = "Linux" ]; then
-    xsel -i < "$1"
+    xclip -sel clip < "$1"
   fi
 }
 

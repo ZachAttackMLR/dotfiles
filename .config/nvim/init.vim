@@ -559,10 +559,10 @@ augroup VimStartupSequence
                 \ |   wincmd w
                 \ | endif
     " Automatically install missing plugins
-    autocmd VimEnter *
-                \   if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-                \ |   PlugInstall --sync | q
-                \ | endif
+"    autocmd VimEnter *
+"                \   if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+"                \ |   PlugInstall --sync | q
+"                \ | endif
 augroup END
 
 " Credit: https://github.com/alichtman/dotfiles/blob/master/.vimrc

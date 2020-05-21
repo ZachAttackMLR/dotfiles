@@ -2,10 +2,9 @@
 .config/nvim/.netrwhist
 .config/nvim/spell/en.utf-8.add*
 .config/zsh/.zcompdump*
-.tmux/plugins
-.tmux/resurrect
+.config/tmux/plugins
+.config/tmux/resurrect
 .config/aws
+.ssh/*
 .pypirc
-.ssh
 .vim
-.jrnl_config
