@@ -558,11 +558,12 @@ augroup VimStartupSequence
                 \ |   NERDTree
                 \ |   wincmd w
                 \ | endif
-    " Automatically install missing plugins
-"    autocmd VimEnter *
-"                \   if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-"                \ |   PlugInstall --sync | q
-"                \ | endif
+    " Automatically install missing plugins if on Darwin
+    " For some reason this is visible on Arch and not on macOS, hence the check
+    autocmd VimEnter *
+                \   if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) && uname == "Darwin"
+                \ |   PlugInstall --sync | q
+                \ | endif
 augroup END
 
 " Credit: https://github.com/alichtman/dotfiles/blob/master/.vimrc
