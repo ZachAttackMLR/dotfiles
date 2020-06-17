@@ -23,7 +23,8 @@ if [ "$OS" = "Darwin" ]; then
   alias brewup='brew update; brew upgrade; brew cask upgrade; brew cleanup;' # excluded brew doctor
   alias up='upgrade_oh_my_zsh; rustup update; cargo-update; npm update; brewup; vimup; zplug update;'
 elif [ "$OS" = "Linux" ]; then
-  alias up='upgrade_oh_my_zsh; cargo-update; rustup update; npm update; vimup; zplug update; echo -e "\n\033[0;34mPacman Updates:\033[0m\n"; checkupdates'
+  alias up='upgrade_oh_my_zsh; cargo-update; rustup update; npm update; vimup; zplug update; echo -e "\n\033[0;34mArch News:\033[0m\n"; yay -Pw; echo -e "\n\033[0;34mPacman Updates:\033[0m\n"; checkupdates; echo -e "\n\033[0;34mAUR Updates:\033[0m\n"; yay -Qu; echo -e "\n\033[0;34mRemoving Orphans:\033[0m\n"; pacman -Qdt; yay -Yc'
+  alias fullup='up; sudo pacman -Syu && yay -Sua'
 fi
 # END Update Stuff }}}
 
@@ -61,6 +62,8 @@ alias dockprune="echo '\n\033[0;34mPruning Containers...\033[0m' && docker conta
 # Convenience {{{
 
 alias vim='nvim'
+# https://www.reddit.com/r/vim/comments/geg7q2/performancekiller_plugins/
+# alias vi=''
 alias g='glow -p'
 [ "$OS" = "Darwin" ] && alias py='python3' && alias p3='pip3'
 alias fuck='eval $(TF_ALIAS=fuck PYTHONIOENCODING=utf-8 thefuck $(fc -ln -1))'
