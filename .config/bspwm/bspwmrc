@@ -9,8 +9,8 @@ fi
 
 # Starting up workspaces on both monitors
 # TODO fix this using below loop
-bspc monitor DP-2 -d 1 2 3
-bspc monitor HDMI-2 -d 4 5 6
+bspc monitor DP-0 -d 1 2 3 4
+bspc monitor HDMI-0 -d 5 6 7 8
 # bspc desktop -f I
 
 # Look for a non-laptop monitor, and use it by default.
