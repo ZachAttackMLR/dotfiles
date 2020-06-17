@@ -75,7 +75,6 @@ set mouse=nv                   " Use mouse for pane selection, resizing, and cur
 set nostartofline              " Don’t reset cursor to start of line when moving around.
 set title                      " Show the filename in the window titlebar
 set autoread                   " Autoread changed files
-set clipboard=unnamed          " Enable copying to macOS clipboard
 set noshowmode                 " Don't show mode under statusline w/ mode
 set scrolloff=6                " Minimal num of lines to keep above/below cursor
 set number                     " Enable line numbers
@@ -90,6 +89,13 @@ set switchbuf=usetab           " Search first in opened windows if opening buffe
 set shortmess+=c               " Don't give ins-completion-menu messages
 set backspace=indent,eol,start " Make delete in insert mode behave as expected.
 syntax on                      " turn on syntax highlighting within vim
+
+" Enable copying to macOS/Arch clipboard
+if uname == "Darwin"
+  set clipboard=unnamed
+elseif uname == "Linux"
+  set clipboard=unamedplus
+endif
 
 " Tab completion menu stuff
 set wildmenu
@@ -558,11 +564,12 @@ augroup VimStartupSequence
                 \ |   NERDTree
                 \ |   wincmd w
                 \ | endif
-    " Automatically install missing plugins
-"    autocmd VimEnter *
-"                \   if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-"                \ |   PlugInstall --sync | q
-"                \ | endif
+    " Automatically install missing plugins if on Darwin
+    " For some reason this is visible on Arch and not on macOS, hence the check
+    autocmd VimEnter *
+                \   if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) && uname == "Darwin"
+                \ |   PlugInstall --sync | q
+                \ | endif
 augroup END
 
 " Credit: https://github.com/alichtman/dotfiles/blob/master/.vimrc
