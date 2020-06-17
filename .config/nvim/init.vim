@@ -94,7 +94,7 @@ syntax on                      " turn on syntax highlighting within vim
 if uname == "Darwin"
   set clipboard=unnamed
 elseif uname == "Linux"
-  set clipboard=unamedplus
+  set clipboard=unnamedplus
 endif
 
 " Tab completion menu stuff
