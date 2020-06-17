@@ -4,6 +4,7 @@ export OS="$(uname -s)"
 
 # Defaults
 [ "$OS" = "Linux" ] && export TERMINAL='st'
+[ "$OS" = "Linux" ] && export PASTEL_COLOR_MODE=24bit
 export EDITOR='nvim'
 export VISUAL='nvim'
 
