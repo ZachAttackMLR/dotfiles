@@ -34,6 +34,7 @@ if [ "$OS" = "Darwin" ]; then
     git-it-on
   )
 elif [ "$OS" = "Linux" ]; then
+  # TODO: Figure out how to get plugin git-it-on working (possible PR needed)
   plugins=(git)
 fi
 

@@ -13,6 +13,7 @@ Plug 'dense-analysis/ale' " Setup on line 244
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Setup on line 235
 Plug 'davidhalter/jedi-vim'
 Plug 'rizzatti/dash.vim'
+Plug 'hashivim/vim-terraform'
 
 " Snippets
 Plug 'honza/vim-snippets'
@@ -37,6 +38,7 @@ Plug 'sainnhe/gruvbox-material'
 "Plug 'nanotech/jellybeans.vim', { 'tag': 'v1.7' }
 "Plug 'jaredgorski/spacecamp'
 "Plug 'nerdypepper/vim-colors-plain', { 'branch': 'duotone' }
+"Plug 'DankNeon/vim' "TODO: Try this out (uncomment this and line 218)
 
 " Status bar shiz
 Plug 'vim-airline/vim-airline'
@@ -213,6 +215,7 @@ let g:gruvbox_contrast_dark='dark'
 "colorscheme xcodedark
 "colorscheme snow
 "colorscheme plain
+"colorscheme dank-neon
 
 "let base16colorspace=256  " Access colors present in 256 colorspace
 "colorscheme base16-black-metal
@@ -267,12 +270,20 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 
 " END Airline Config }}}
 
+" vim-terraform Config {{{
+
+let g:terraform_align=1
+let g:terraform_fold_sections=1
+let g:terraform_fmt_on_save=1
+
+" END vim-terraform Config }}}
+
 " ALE Config {{{
 
 " Enabling both loclist and quickfix, and enabling opening the list in a vnew
 let g:ale_set_loclist=1
 let g:ale_set_quickfix=1
-let g:ale_open_list = 1
+let g:ale_open_list=1
 
 " ALELinters for each language
 let g:ale_linters = {
@@ -564,12 +575,11 @@ augroup VimStartupSequence
                 \ |   NERDTree
                 \ |   wincmd w
                 \ | endif
-    " Automatically install missing plugins if on Darwin
-    " For some reason this is visible on Arch and not on macOS, hence the check
-    autocmd VimEnter *
-                \   if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) && uname == "Darwin"
-                \ |   PlugInstall --sync | q
-                \ | endif
+    " Automatically install missing plugins
+"    autocmd VimEnter *
+"                \   if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+"                \ |   PlugInstall --sync | q
+"                \ | endif
 augroup END
 
 " Credit: https://github.com/alichtman/dotfiles/blob/master/.vimrc
