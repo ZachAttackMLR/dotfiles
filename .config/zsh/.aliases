@@ -21,9 +21,9 @@ alias vimup="nvim '+PlugUpdate' '+PlugUpgrade' '+CocUpdate' '+qall';"
 
 if [ "$OS" = "Darwin" ]; then
   alias brewup='brew update; brew upgrade; brew cask upgrade; brew cleanup;' # excluded brew doctor
-  alias up='upgrade_oh_my_zsh; rustup update; cargo-update; npm update; brewup; vimup; zplug update;'
+  alias up='omz update; rustup update; cargo-update; npm update; brewup; vimup; zplug update;'
 elif [ "$OS" = "Linux" ]; then
-  alias up='upgrade_oh_my_zsh; cargo-update; rustup update; npm update; vimup; zplug update; echo -e "\n\033[0;34mArch News:\033[0m\n"; yay -Pw; echo -e "\n\033[0;34mPacman Updates:\033[0m\n"; checkupdates; echo -e "\n\033[0;34mAUR Updates:\033[0m\n"; yay -Qu; echo -e "\n\033[0;34mRemoving Orphans:\033[0m\n"; pacman -Qdt; yay -Yc'
+  alias up='omz update; cargo-update; rustup update; npm update; vimup; zplug update; echo -e "\n\033[0;34mArch News:\033[0m\n"; yay -Pw; echo -e "\n\033[0;34mPacman Updates:\033[0m\n"; checkupdates; echo -e "\n\033[0;34mAUR Updates:\033[0m\n"; yay -Qu; echo -e "\n\033[0;34mRemoving Orphans:\033[0m\n"; pacman -Qdt; yay -Yc'
   alias fullup='up; sudo pacman -Syu && yay -Sua'
 fi
 # END Update Stuff }}}
@@ -39,6 +39,10 @@ if [ "$OS" = "Darwin" ]; then
   alias chkmute='osascript -e "output muted of (get volume settings)"'
   alias setvol='set_volume'
   alias mute='mute_vol'
+
+  # Shpotify - macOS CLI Spotify controller
+  alias spot='spotify'
+  alias spotstat='spot status'
 fi
 
 # END macOS Stuff }}}
@@ -70,14 +74,34 @@ alias fuck='eval $(TF_ALIAS=fuck PYTHONIOENCODING=utf-8 thefuck $(fc -ln -1))'
 alias please='sudo $(fc -ln -1)' # Rerun last command with sudo
 alias weather='ansiweather | sed "s/Sunrise.*S/S/"'
 alias weather-detailed='curl wttr.in'
-alias rm="safe-rm"
 alias f='fzf'
+alias p="lpass login --color=auto $LPASSUSRNAME"
+alias getp='lpass show --password --clip'
 
 # Autojump / z / fz
 alias j='z'
 alias jj='zz'
 
+if [ "$OS" = "Linux" ]; then
+
+# This is for switching audio profiles for my bluetooth headphones since I
+# couldn't get it working automatically from HSP/HFP to A2DP (but could vice versa for some reason).
+# TODO: Get rid of this and get the switching to work automatically
+alias btprof='pacmd set-card-profile 2 a2dp_sink'
+
+alias startx='ssh-agent startx'
+alias cppng='xclip -selection clipboard -t image/png'
+fi
+
 # END Convenience }}}
+
+# Safety {{{
+
+alias rm="safe-rm"
+alias cp="cp -i"
+alias mv="mv -i"
+
+# END Safety }}}
 
 # Fun Stuff {{{
 
@@ -85,10 +109,6 @@ alias trip='yes "$(seq 231 -1 16)" | while read i; do printf "\x1b[48;5;${i}m\n"
 alias matrix='unimatrix -s 93'
 alias pipes='pipes.sh -f 75 -t 3 -B'
 alias vicheat='sxiv ~/notes/img/vim_cheatsheet.gif'
-
-# Shpotify
-alias spot='spotify'
-alias spotstat='spot status'
 
 alias reddit='tuir'
 alias emoji='emoj'
@@ -116,7 +136,7 @@ alias tasks='tb'
 alias task='tb --task'
 alias h='habitctl'
 alias habits='habitctl log && echo "\nTODO:\n" && habitctl todo'
-alias habitedit='habitctl edith'
+alias habitedit='habitctl edit'
 
 # END Tasks/Habits }}}
 

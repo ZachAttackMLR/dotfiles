@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 # Stolen from https://github.com/richoH/dotfiles/blob/master/bin/battery
 # then edited to display percent if charging, and hearts if not
-# NOTE: While I primarily use macOS, I've left in the Linux and FreeBSD
-# implementations for compatability
 
 linux_get_bat () {
     bf=$(cat $BAT_FULL)
@@ -10,38 +8,16 @@ linux_get_bat () {
     echo $(( 100 * $bn / $bf ))
 }
 
-freebsd_get_bat () {
-    echo "$(sysctl -n hw.acpi.battery.life)"
-}
-
 battery_status() {
 case $(uname -s) in
     "Linux")
         BATPATH=/sys/class/power_supply/BAT0
         STATUS=$BATPATH/status
-        BAT_FULL=$BATPATH/energy_full
-        BAT_NOW=$BATPATH/energy_now
+        BAT_FULL=$BATPATH/charge_full
+        BAT_NOW=$BATPATH/charge_now
         if [ "$1" = `cat $STATUS` -o "$1" = "" ]; then
             linux_get_bat
         fi
-        ;;
-    "FreeBSD")
-        STATUS=`sysctl -n hw.acpi.battery.state`
-        case $1 in
-            "Discharging")
-                if [ $STATUS -eq 1 ]; then
-                    freebsd_get_bat
-                fi
-                ;;
-            "Charging")
-                if [ $STATUS -eq 2 ]; then
-                    freebsd_get_bat
-                fi
-                ;;
-            "")
-                freebsd_get_bat
-                ;;
-        esac
         ;;
     "Darwin")
         ext=`ioreg -c AppleSmartBattery -w0 | awk '/IsCharging/ {print $5}'`

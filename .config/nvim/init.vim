@@ -1,4 +1,4 @@
-" What... What have I done?! - Zach Gorman
+" Zach's nvim config
 
 " Will be set to either Darwin (macOS) or Linux based on what machine I'm on
 let uname = substitute(system('uname'), '\n', '', '')
@@ -9,8 +9,9 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " Some syntax highlighting, linting, and autocompletion stuff
 Plug 'sheerun/vim-polyglot'
-Plug 'dense-analysis/ale' " Setup on line 244
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " Setup on line 235
+Plug 'kovetskiy/sxhkd-vim'
+Plug 'dense-analysis/ale'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'davidhalter/jedi-vim'
 Plug 'rizzatti/dash.vim'
 Plug 'hashivim/vim-terraform'
@@ -40,7 +41,10 @@ Plug 'sainnhe/gruvbox-material'
 "Plug 'nerdypepper/vim-colors-plain', { 'branch': 'duotone' }
 "Plug 'DankNeon/vim' "TODO: Try this out (uncomment this and line 218)
 
-" Status bar shiz
+" tmux things
+Plug 'christoomey/vim-tmux-navigator'
+
+" Status bar
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -58,7 +62,11 @@ Plug 'https://gitlab.com/code-stats/code-stats-vim.git'
 Plug 'wakatime/vim-wakatime'
 
 " fzf - https://github.com/junegunn/fzf.vim
-Plug '/usr/local/opt/fzf'
+if uname == "Darwin"
+  Plug '/usr/local/opt/fzf'
+elseif uname == "Linux"
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+endif
 Plug 'junegunn/fzf.vim'
 
 " Spellcheck stuff
@@ -162,6 +170,9 @@ nnoremap <leader>pdf :w <bar> !pdflatex %<cr>
 " Map leader er to replace a space with a line break the join the lines
 " Helps when I'm over 80 lines in LaTeX and want a break, but also a join
 nnoremap <leader>er s<cr><Esc>J
+
+" Make Y behave like C and D
+nnoremap Y y$
 
 " remap <c-a> and <c-x> (incrementing and decrementing numbers) to same thing
 " but with alt
@@ -287,14 +298,15 @@ let g:ale_open_list=1
 
 " ALELinters for each language
 let g:ale_linters = {
-\     'java': ['checkstyle', 'javac'],
-\     'json': ['prettier'],
+\     'c': ['clangtidy', 'gcc'],
+\     'cpp': ['clangtidy', 'ccls', 'cppcheck', 'cpplint'],
 \     'css': ['prettier'],
 \     'html': ['prettier'],
-\     'yaml': ['prettier'],
+\     'java': ['checkstyle', 'javac'],
+\     'json': ['prettier'],
 \     'markdown': ['prettier'],
-\     'c': ['clangtidy', 'gcc'],
-\     'cpp': ['clangtidy', 'ccls', 'cppcheck', 'cpplint']
+\     'python' :['flake8', 'mypy'],
+\     'yaml': ['prettier']
 \}
 
 " :ALEFix-ers for each language
@@ -329,12 +341,24 @@ let g:UltiSnipsEditSplit="vertical"
 " Heavily based on: https://github.com/neoclide/coc.nvim#example-vim-configuration
 " and https://github.com/alichtman/dotfiles/blob/master/.vimrc
 
+" Don't know where else to put this so that I remember on new machines, but
+" CoC needs plugins installed to work correctly with my config. They can be
+" installed with `:CocInstall X`. The ones required to work (how I want it to)
+" with this config are as follows:
+" coc-ultisnips, coc-json, coc-cfn-lint, coc-clangd, coc-css, coc-highlight,
+" coc-html, coc-java, coc-python, coc-markdownlint, coc-powershell,
+" coc-texlab, coc-tsserver, coc-vimlsp, coc-rust-analyzer, coc-yaml,
+" coc-prettier, coc-syntax, coc-docker
+
 " https://github.com/neoclide/coc.nvim/issues/856
 if uname == "Darwin"
   let g:coc_node_path = "/usr/local/bin/node"
 elseif uname == "Linux"
   let g:coc_node_path = "/usr/bin/node"
 endif
+
+"TODO add all the above extenions into this
+"let g:coc_global_extensions=[]
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -396,6 +420,9 @@ nmap <leader>qf <Plug>(coc-fix-current)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
+
+"Use `:Prettier` to format current buffer
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " Use `:Fold` to fold current buffer
 command! -nargs=? Fold :call CocAction('fold', <f-args>)

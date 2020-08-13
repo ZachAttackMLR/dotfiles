@@ -1,22 +1,30 @@
 [alias]
-	uncommit = reset --soft HEAD^
-	unstage = git reset HEAD
+  uncommit = reset --soft HEAD^
+  unstage = git reset HEAD
 [user]
-	email = gorman.zacharyj@gmail.com
-	name = Zach Gorman
+  email = gorman.zacharyj@gmail.com
+  name = Zach Gorman
+[pager]
+  diff = diff-so-fancy | bat
+  show = diff-so-fancy | bat
+  branch = false
+[core]
+  excludesfile = ~/.config/git/gitignore_global
 [color]
-	ui = true
+  ui = true
 [color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
+  oldNormal = red bold
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22
 [color "diff"]
-	meta = yellow
-	frag = magenta bold
-	commit = yellow bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
+  meta = yellow
+  frag = magenta bold
+  commit = yellow bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
 [github]
-	user=ZachAttackMLR
+  user=ZachAttackMLR
+[pull]
+	rebase = false

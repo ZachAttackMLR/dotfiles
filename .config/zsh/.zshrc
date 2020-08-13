@@ -1,4 +1,4 @@
-# Zach's macOS .zshrc
+# Zach's .zshrc
 # Bunch of this is stolen from https://github.com/alichtman/dotfiles/blob/master/.zshrc
 
 # START Prompt {{{
@@ -27,30 +27,37 @@ export FZF_BASE="/usr/local/bin/fzf"
 # Add wisely, as too many plugins slow down shell startup.
 if [ "$OS" = "Darwin" ]; then
   plugins=(
-    git
     you-should-use
     zsh-autosuggestions
     zsh-completions
     git-it-on
   )
 elif [ "$OS" = "Linux" ]; then
-  # TODO: Figure out how to get plugin git-it-on working (possible PR needed)
+  # TODO: get this working with zplug
   plugins=(git)
 fi
 
 # zplug
-source ~/.zplug/init.zsh
+source "$ZPLUG_HOME"/init.zsh
 
 zplug "changyuheng/zsh-interactive-cd"
 zplug "changyuheng/fz", defer:1
 zplug "rupa/z", use:z.sh
+# zplug "plugins/git", from:oh-my-zsh
+# TODO: Get git-it-on working on arch
+zplug "peterhurford/git-it-on.zsh", as:plugin, use:git-it-on.plugin.zsh
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
-# zplug check returns true if all packages are installed
-# Therefore, when it returns false, run zplug install
-if ! zplug check; then
-    zplug install
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
 fi
+
+# Source plugins and add commands to $PATH
+zplug load #--verbose
 
 # z - https://github.com/rupa/z
 [ "$OS" = "Darwin" ] && source $(brew --prefix)/etc/profile.d/z.sh
@@ -222,6 +229,9 @@ export HISTFILE="$XDG_CACHE_HOME/.zsh_history"
 # Sourcing Other Files {{{
 
 source "$HOME/.secrets"
+
+# This is extremely lazy but that's me
+[ "$OS" = "Linux" ] && source "$HOME/pkgs/zsh-insulter/src/zsh.command-not-found"
 
 for file in $XDG_CONFIG_HOME/zsh/.{aliases,zfunctions}; do
   [ -r "$file" ] && [ -f "$file" ] && source "$file"

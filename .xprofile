@@ -15,6 +15,6 @@ sxhkd &                   # so my shortcuts actually work
 dunst &                   # notifications
 unclutter &
 
-if [[ "$(tty)" = "/dev/tty1" ]]; then
-  pgrep bspwm || startx
-fi
+#if [[ "$(tty)" = "/dev/tty1" ]]; then
+#  pgrep bspwm || startx
+#fi
