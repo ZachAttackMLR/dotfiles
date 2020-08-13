@@ -27,16 +27,19 @@ export TMUX_PLUGIN_MANAGER_PATH="$XDG_CONFIG_HOME"/tmux/plugins/
 export BUNDLE_USER_CONFIG="$XDG_CONFIG_HOME"/bundle
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/config
+export GRIPHOME="$XDG_CONFIG_HOME"/grip
 
 # data
-# TODO get cargo portion working on macos
 export AWS_CLI_HISTORY_FILE="$XDG_DATA_HOME"/aws/history
-export CARGO_HOME="$XDG_DATA_HOME/"cargo
+export AZURE_CONFIG_DIR="$XDG_DATA_HOME"/azure
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME"/bundle
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export PLTUSERHOME="$XDG_DATA_HOME"/racket
 export GEM_HOME="$XDG_DATA_HOME"/gem
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+export ZPLUG_HOME="$XDG_DATA_HOME"/zplug
+export GOPATH="$XDG_DATA_HOME"/go
 
 # cache
 export _Z_DATA="$XDG_CACHE_HOME"/.z
@@ -44,6 +47,7 @@ export LESSHISTFILE="$XDG_CACHE_HOME"/lesshst
 export BUNDLE_USER_CACHE="$XDG_CACHE_HOME"/bundle
 export NPM_CONFIG_CACHE="$XDG_CACHE_HOME"/npm
 export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
+export NUGET_PACKAGES="$XDG_CACHE_HOME"/NuGetPackages
 
 # runtime
 #export NPM_CONFIG_TMP="$XDG_RUNTIME_DIR"/npm
@@ -136,6 +140,7 @@ export PATH="$PATH:/usr/local"
 export PATH="$PATH:/usr/sbin"
 export PATH="$PATH:/usr/local/sbin"
 export PATH="$CARGO_HOME/bin:$PATH"
+[ "$OS" = "Linux" ] && export PATH="$PATH:$GOPATH/bin"
 if [ "$OS" = "Darwin" ]; then
   export PATH="$PATH:$HOME/Library/Python/3.7/bin"
   export PATH="$PATH:/usr/local/anaconda3/bin"
