@@ -84,13 +84,14 @@ alias jj='zz'
 
 if [ "$OS" = "Linux" ]; then
 
-# This is for switching audio profiles for my bluetooth headphones since I
-# couldn't get it working automatically from HSP/HFP to A2DP (but could vice versa for some reason).
-# TODO: Get rid of this and get the switching to work automatically
-alias btprof='pacmd set-card-profile 2 a2dp_sink'
+  # This is for switching audio profiles for my bluetooth headphones since I
+  # couldn't get it working automatically from HSP/HFP to A2DP (but could vice versa for some reason).
+  # TODO: Get rid of this and get the switching to work automatically
+  alias btprof='pacmd set-card-profile 2 a2dp_sink'
 
-alias startx='ssh-agent startx'
-alias cppng='xclip -selection clipboard -t image/png'
+  alias startx='ssh-agent startx'
+  alias cppng='xclip -selection clipboard -t image/png'
+  alias todo='vim ~/docs/notes/work/todo.md'
 fi
 
 # END Convenience }}}
