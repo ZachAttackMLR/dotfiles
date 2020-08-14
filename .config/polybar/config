@@ -96,7 +96,7 @@ font-1 = fixed:pixelsize=14;1
 font-2 = unifont:fontformat=truetype:size=14:antialias=true;0
 font-3 = siji:pixelsize=14;1
 modules-left = bspwm xwindow
-modules-right = spotify filesystem pulseaudio memory cpu eth temperature battery date
+modules-right = spotify filesystem pulseaudio memory cpu temperature battery date
 tray-position = right
 tray-padding = 0
 wm-restack = bspwm
@@ -168,7 +168,7 @@ font-1 = fixed:pixelsize=12;1
 font-2 = unifont:fontformat=truetype:size=12:antialias=true;0
 font-3 = siji:pixelsize=12;1
 modules-left = bspwm xwindow
-modules-right = speedtestDown speedtestUp pulseaudio eth date
+modules-right = speedtestUp speedtestDown pulseaudio date
 tray-position = right
 tray-padding = 0
 wm-restack = bspwm
