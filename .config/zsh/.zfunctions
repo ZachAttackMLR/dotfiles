@@ -129,12 +129,21 @@ function ranger {
 
 # Everything above this line is stolen, everything below is original
 
-# More Shortcuts {{{
+# Work Shortcuts {{{
 
 # Clone and configure work managed repos using my work github account's ssh config and key
 function workclone {
   git clone github-pg:procter-gamble/"$1".git
   cd $1 && git config user.email "gorman.zj@pg.com"
+}
+
+# MFA needed to log in to corporate AWS, so run the python script to do so
+function awsmfa {
+  p && getp "pg.com"
+  ( # start subshell
+  cd $HOME/docs/repos/work/others/aws-cli-federation-mfa/
+  python aws_ping_login.py --config "$AWS_SHARED_CREDENTIALS_FILE"
+  )
 }
 
 # END More Shortcuts }}}

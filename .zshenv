@@ -18,7 +18,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
 export WAKATIME_HOME="$XDG_CONFIG_HOME"/wakatime
 export ANSIWEATHERRC="$XDG_CONFIG_HOME"/ansiweather/config
-export AWS_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
+export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
 export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export HTTPIE_CONFIG_DIR="$XDG_CONFIG_HOME"/httpie
@@ -26,7 +26,7 @@ export MPLCONFIGDIR="$XDG_CONFIG_HOME"/matplotlib
 export TMUX_PLUGIN_MANAGER_PATH="$XDG_CONFIG_HOME"/tmux/plugins/
 export BUNDLE_USER_CONFIG="$XDG_CONFIG_HOME"/bundle
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
-export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/config
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 export GRIPHOME="$XDG_CONFIG_HOME"/grip
 
 # data
