@@ -6,7 +6,7 @@ if [ "$OS" = "Darwin" ]; then
 elif [ "$OS" = "Linux" ]; then
   alias ls='lsd -1A --icon-theme unicode --group-dirs first'
   alias ll='lsd -l -1A --icon-theme unicode --group-dirs first'
-  alias tree='ls --tree -I=.DS_Store'
+  alias tree='ls --tree'
 fi
 
 alias ldown='ls ~/Downloads/'
@@ -91,7 +91,7 @@ if [ "$OS" = "Linux" ]; then
 
   alias startx='ssh-agent startx'
   alias cppng='xclip -selection clipboard -t image/png'
-  alias todo='vim ~/docs/notes/work/todo.md'
+  alias todo='vim -O2 ~/docs/notes/work/todo.md ~/docs/notes/personal/todo.md'
 fi
 
 # END Convenience }}}
