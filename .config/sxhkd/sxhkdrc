@@ -22,7 +22,7 @@ super + o; b
 
 # killall browser
 super + o; x
-    killall firefox
+    pkill -f firefox
 
 # open signal
 super + o; s
