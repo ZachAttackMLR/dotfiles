@@ -140,6 +140,7 @@ export PATH="$PATH:/usr/local"
 export PATH="$PATH:/usr/sbin"
 export PATH="$PATH:/usr/local/sbin"
 export PATH="$CARGO_HOME/bin:$PATH"
+export PATH="$HOME/.serverless/bin:$PATH"
 [ "$OS" = "Linux" ] && export PATH="$PATH:$GOPATH/bin"
 if [ "$OS" = "Darwin" ]; then
   export PATH="$PATH:$HOME/Library/Python/3.7/bin"
@@ -151,6 +152,9 @@ fi
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ]; then
   PATH="$HOME/bin:$PATH"
+  if [ -d "$HOME/bin/rofi" ]; then
+     PATH="$HOME/bin/rofi:$PATH"
+  fi
 fi
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
