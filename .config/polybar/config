@@ -96,7 +96,7 @@ font-1 = fixed:pixelsize=14;1
 font-2 = unifont:fontformat=truetype:size=14:antialias=true;0
 font-3 = siji:pixelsize=14;1
 modules-left = bspwm xwindow
-modules-right = spotify filesystem pulseaudio memory cpu temperature battery date
+modules-right = spotify filesystem pulseaudio cpu memory temperature battery date
 tray-position = right
 tray-padding = 0
 wm-restack = bspwm
