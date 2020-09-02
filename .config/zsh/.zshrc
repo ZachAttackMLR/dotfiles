@@ -198,6 +198,11 @@ if [[ "$(basename -- ${(%):-%x})" != "_toggl" ]]; then
   compdef _toggl toggl
 fi
 
+# Serverless Completion
+# tabtab source for serverless package
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
+
 # END Completion }}}
 
 # Start FZF Stuff {{{
