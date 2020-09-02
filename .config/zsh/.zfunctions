@@ -139,7 +139,7 @@ function workclone {
 
 # MFA needed to log in to corporate AWS, so run the python script to do so
 function awsmfa {
-  p && getp "pg.com"
+  getp "pg.com"
   ( # start subshell
   cd $HOME/docs/repos/work/others/aws-cli-federation-mfa/
   python aws_ping_login.py --config "$AWS_SHARED_CREDENTIALS_FILE"
@@ -147,6 +147,14 @@ function awsmfa {
 }
 
 # END More Shortcuts }}}
+
+# Shortcuts {{{
+
+function repo {
+  gitit repo $(echo "$1" | tr "/" " ")
+}
+
+# END Shortcuts }}}
 
 # Sound Stuff {{{
 
