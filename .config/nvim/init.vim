@@ -48,6 +48,12 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+" Persistent Scratch Buffers
+Plug 'mtth/scratch.vim'
+
+" Commenting
+Plug 'scrooloose/nerdcommenter'
+
 " Delimiter - auto-closes parens, quotes, brackets, etc.
 Plug 'Raimondi/delimitMate'
 
@@ -56,6 +62,10 @@ Plug 'Raimondi/delimitMate'
 " (http://vimcasts.org/episodes/aligning-text-with-tabular-vim/)
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
+Plug 'ferrine/md-img-paste.vim'
+"
+" Surrounding text
+Plug 'tpope/vim-surround'
 
 " Time tracking stuff
 Plug 'https://gitlab.com/code-stats/code-stats-vim.git'
@@ -297,15 +307,17 @@ let g:ale_set_quickfix=1
 let g:ale_open_list=1
 
 " ALELinters for each language
+" TODO: Get mypy working for python linting
 let g:ale_linters = {
 \     'c': ['clangtidy', 'gcc'],
 \     'cpp': ['clangtidy', 'ccls', 'cppcheck', 'cpplint'],
 \     'css': ['prettier'],
 \     'html': ['prettier'],
 \     'java': ['checkstyle', 'javac'],
+\     'javascript': ['prettier', 'eslint'],
 \     'json': ['prettier'],
 \     'markdown': ['prettier'],
-\     'python' :['flake8', 'mypy'],
+\     'python': ['flake8'],
 \     'yaml': ['prettier']
 \}
 
@@ -483,7 +495,7 @@ let g:startify_lists = [
 let g:startify_bookmarks = [
             \ {'a': '~/.vimrc'},
             \ {'b': '~/.zshrc'},
-            \ {'c': '~/notable/notes/'} ]
+            \ {'c': '~/docs/notes/'} ]
 
 let g:startify_custom_header = [
         \ '                                      ___...-----------...___',
@@ -531,6 +543,7 @@ let g:startify_session_autoload = 1
 
 let NERDTreeShowHidden = 1
 let NERDTreeStatusline = 0
+let NERDTreeWinSize    = 26
 
 " END NERDTree Config }}}
 
