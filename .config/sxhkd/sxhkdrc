@@ -8,7 +8,7 @@ super + Return
 
 # launch a new program like how spotlight does it on mac
 super + @space
-    noswallow_dmenu
+    rofi -show run
 
 # reload sxhkd
 super + Escape
