@@ -77,6 +77,9 @@ alias weather-detailed='curl wttr.in'
 alias f='fzf'
 alias p="lpass login --color=auto $LPASSUSRNAME"
 alias getp='lpass show --password --clip'
+alias pdf='pdflatex -output-directory out'
+alias zathura="zathura --config-dir=$XDG_CONFIG_HOME/zathura"
+alias gitdiff='[ $# -eq 0 ] && git diff --color "$1" | diff-so-fancy | bat || git diff --color | diff-so-fancy | bat'
 
 # Autojump / z / fz
 alias j='z'
@@ -121,6 +124,7 @@ alias emoji='emoj'
 alias aliases='vim $XDG_CONFIG_HOME/zsh/.aliases'
 alias zfuncs='vim $XDG_CONFIG_HOME/zsh/.zfunctions'
 alias zshrc='vim $XDG_CONFIG_HOME/zsh/.zshrc'
+alias zshenv='vim $HOME/.zshenv'
 alias srczrc='source $XDG_CONFIG_HOME/zsh/.zshrc'
 alias vimrc='vim $XDG_CONFIG_HOME/nvim/init.vim'
 alias tmconf='vim $XDG_CONFIG_HOME/tmux/tmux.conf'
