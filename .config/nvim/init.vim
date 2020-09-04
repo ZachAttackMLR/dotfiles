@@ -353,14 +353,12 @@ let g:UltiSnipsEditSplit="vertical"
 " Heavily based on: https://github.com/neoclide/coc.nvim#example-vim-configuration
 " and https://github.com/alichtman/dotfiles/blob/master/.vimrc
 
-" Don't know where else to put this so that I remember on new machines, but
-" CoC needs plugins installed to work correctly with my config. They can be
-" installed with `:CocInstall X`. The ones required to work (how I want it to)
-" with this config are as follows:
-" coc-ultisnips, coc-json, coc-cfn-lint, coc-clangd, coc-css, coc-highlight,
-" coc-html, coc-java, coc-python, coc-markdownlint, coc-powershell,
-" coc-texlab, coc-tsserver, coc-vimlsp, coc-rust-analyzer, coc-yaml,
-" coc-prettier, coc-syntax, coc-docker
+" All the CoC plugins that I use and want installed everywhere all the time :)
+let g:coc_global_extensions=[
+      \ 'coc-ultisnips', 'coc-json', 'coc-cfn-lint', 'coc-clangd', 'coc-css',
+      \ 'coc-highlight', 'coc-html', 'coc-java', 'coc-python', 'coc-markdownlint',
+      \ 'coc-powershell', 'coc-texlab', 'coc-tsserver', 'coc-vimlsp', 'coc-rust-analyzer',
+      \ 'coc-yaml', 'coc-prettier', 'coc-syntax', 'coc-docker', 'coc-eslint' ]
 
 " https://github.com/neoclide/coc.nvim/issues/856
 if uname == "Darwin"
@@ -546,6 +544,14 @@ let NERDTreeStatusline = 0
 let NERDTreeWinSize    = 26
 
 " END NERDTree Config }}}
+"
+" md-img-paste.vim config {{{
+
+autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
+let g:mdip_imgdir = 'img'
+let g:mdip_imgname = 'img'
+
+" END md-img-paste.vim config }}}
 
 " Autogroups / Autocommands {{{
 
