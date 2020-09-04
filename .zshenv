@@ -1,20 +1,27 @@
-# Zach Gorman's .zshenv
+###############################################################################
+#                              Zach Gorman's .zshenv                          #
+###############################################################################
 
+
+################
+#   Defaults   #
+################
 export OS="$(uname -s)"
-
-# Defaults
 [ "$OS" = "Linux" ] && export TERMINAL='st'
 [ "$OS" = "Linux" ] && export PASTEL_COLOR_MODE=24bit
 export EDITOR='nvim'
 export VISUAL='nvim'
 
-# XDG (for future OS interoperability)
+
+################
+#   XDG Spec   #
+################
+
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 
-# Directories and ~ Cleanup
-# config
+# Config
 export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
 export WAKATIME_HOME="$XDG_CONFIG_HOME"/wakatime
 export ANSIWEATHERRC="$XDG_CONFIG_HOME"/ansiweather/config
@@ -29,7 +36,7 @@ export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 export GRIPHOME="$XDG_CONFIG_HOME"/grip
 
-# data
+# Data
 export AWS_CLI_HISTORY_FILE="$XDG_DATA_HOME"/aws/history
 export AZURE_CONFIG_DIR="$XDG_DATA_HOME"/azure
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
@@ -41,7 +48,7 @@ export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export ZPLUG_HOME="$XDG_DATA_HOME"/zplug
 export GOPATH="$XDG_DATA_HOME"/go
 
-# cache
+# Cache
 export _Z_DATA="$XDG_CACHE_HOME"/.z
 export LESSHISTFILE="$XDG_CACHE_HOME"/lesshst
 export BUNDLE_USER_CACHE="$XDG_CACHE_HOME"/bundle
@@ -49,8 +56,10 @@ export NPM_CONFIG_CACHE="$XDG_CACHE_HOME"/npm
 export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
 export NUGET_PACKAGES="$XDG_CACHE_HOME"/NuGetPackages
 
-# runtime
-#export NPM_CONFIG_TMP="$XDG_RUNTIME_DIR"/npm
+
+###############
+#   Runtime   #
+###############
 
 if [ "$OS" = "Darwin" ]; then
   export ZSH="$HOME"/.oh-my-zsh
@@ -121,17 +130,26 @@ ex=🎯:\
 *.part=💔:\
 *.torrent=🔽:\
 "
-
 # lf icons }}}
 
-# GCC
+
+###########
+#   GCC   #
+###########
 
 if [ "$OS" = "Darwin" ]; then
   export CC=/usr/local/gcc-9.2/bin/gcc-9.2
   export LD=/usr/local/gcc-9.2/bin/gcc-9.2
 fi
 
-# PATH
+####################
+#   LastPass CLI   #
+####################
+LPASS_AGENT_TIMEOUT=21600
+
+############
+#   PATH   #
+############
 
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:/usr/local/bin"
