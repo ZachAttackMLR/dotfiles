@@ -16,6 +16,17 @@ dunst &            # notifications
 unclutter &        # removes mouse from screen if not active
 flameshot &        # startup flameshot for screenshots
 
+# HDMI on cairhein and DP on sheinar despite labels of inputs
+if [[ $(hostname) == 'cairhein' ]]; then
+  xrandr --newmode "2560x1440_60.00"  312.25  2560 2752 3024 3488  1440 1443 1448 1493 -hsync +vsync
+  xrandr --addmode DP-1 2560x1440_60.00
+  xrandr --addmode DP-3 2560x1440_60.00
+elif [[ $(hostname) == 'sheinar' ]]; then
+  xrandr --newmode "2560x1440_144.00"  808.75  2560 2792 3072 3584  1440 1443 1448 1568 -hsync +vsync
+  xrandr --addmode DP-0 2560x1440_144.00
+  xrandr --addmode DP-1 2560x1440_144.00
+fi
+
 #if [[ "$(tty)" = "/dev/tty1" ]]; then
 #  pgrep bspwm || startx
 #fi
