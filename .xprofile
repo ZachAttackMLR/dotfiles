@@ -6,26 +6,33 @@
 # Gnome apps start slow if services fail, so we fix it
 # dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 
-# mpd &            # TODO eventually get mpd working
 remaps &           # get some remaps going
-launch_polybar &   # start polybar via script
 setbg &            # backup script
 xcompmgr &         # for transparency
 sxhkd &            # so my shortcuts actually work
 dunst &            # notifications
 unclutter &        # removes mouse from screen if not active
 flameshot &        # startup flameshot for screenshots
+firefox &          # startup browser
+TogglDesktop &     # time tracking
+spotify &          # music is great
 
 # HDMI on cairhein and DP on sheinar despite labels of inputs
 if [[ $(hostname) == 'cairhein' ]]; then
+  brave &        # Only use on work machine
+  teams &        # Only use on work machine
+  VirtualBox &   # Only use on work machine
   xrandr --newmode "2560x1440_60.00"  312.25  2560 2752 3024 3488  1440 1443 1448 1493 -hsync +vsync
   xrandr --addmode DP-1 2560x1440_60.00
   xrandr --addmode DP-3 2560x1440_60.00
-elif [[ $(hostname) == 'sheinar' ]]; then
+elif [[ $(hostname) == 'shienar' ]]; then
+  mpd &  # I only have mpd set up on my desktop... for now ;)
   xrandr --newmode "2560x1440_144.00"  808.75  2560 2792 3072 3584  1440 1443 1448 1568 -hsync +vsync
   xrandr --addmode DP-0 2560x1440_144.00
   xrandr --addmode DP-1 2560x1440_144.00
 fi
+
+launch_polybar &   # start polybar via script (last cuz it always breaks)
 
 #if [[ "$(tty)" = "/dev/tty1" ]]; then
 #  pgrep bspwm || startx
