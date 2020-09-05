@@ -3,7 +3,8 @@
   border-color: #2e343f;
   text-color: #8ca0aa;
   spacing: 0;
-  width: 512px;
+  width: 50%;
+  highlight: italic underline;
 }
 
 inputbar {
@@ -12,7 +13,7 @@ inputbar {
 }
 
 prompt {
-  padding: 16px;
+  padding: 7px;
   border: 0 1px 0 0;
 }
 
@@ -20,11 +21,12 @@ textbox {
   background-color: #2e343f;
   border: 0 0 1px 0;
   border-color: #282C33;
-  padding: 8px 16px;
+  padding: 3px 7px;
+  highlight: @highlight;
 }
 
 entry {
-  padding: 16px;
+  padding: 7px;
 }
 
 listview {
@@ -35,7 +37,7 @@ listview {
 
 element {
   border: 0 0 1px 0;
-  padding: 16px;
+  padding: 5px;
 }
 
 element selected {
