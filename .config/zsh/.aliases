@@ -17,7 +17,7 @@ alias sl='ls' # for typo correction :)
 # Update Stuff {{{
 
 alias cargo-update='cargo install-update -a'
-alias vimup="nvim '+PlugUpdate' '+PlugUpgrade' '+CocUpdate' '+qall'; nvim -c 'CocUpdateSync|q'"
+alias vimup="nvim '+PlugUpdate' '+PlugUpgrade' '+CocUpdate' '+qall'"
 
 if [ "$OS" = "Darwin" ]; then
   alias brewup='brew update; brew upgrade; brew cask upgrade; brew cleanup;' # excluded brew doctor
