@@ -43,9 +43,9 @@ bspc config gapless_monocle true
 bspc rule -a "VirtualBox Manager" desktop=^3
 bspc rule -a "Microsoft Teams - Preview" desktop=^5
 bspc rule -a "Toggl Desktop" desktop=^7
-bspc rule -a firefox desktop=^8
-bspc rule -a Brave-browser desktop=^9
-bspc rule -a VirtualBoxVM desktop=^11
+bspc rule -a "firefox" desktop=^8
+bspc rule -a "Brave-browser" desktop=^9
+bspc rule -a "VirtualBoxVM" desktop=^11
 
 # TODO: Figure out how to properly configure/use this dropdown stuff
 #dropdownname="dropdown"
