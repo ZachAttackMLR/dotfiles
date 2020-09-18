@@ -307,17 +307,19 @@ let g:ale_set_quickfix=1
 let g:ale_open_list=1
 
 " ALELinters for each language
-" TODO: Get mypy working for python linting
+" TODO: Get mypy working for python linting and/or config flake8
+"     : Get eslint working for js linting
 let g:ale_linters = {
 \     'c': ['clangtidy', 'gcc'],
 \     'cpp': ['clangtidy', 'ccls', 'cppcheck', 'cpplint'],
 \     'css': ['prettier'],
 \     'html': ['prettier'],
 \     'java': ['checkstyle', 'javac'],
-\     'javascript': ['prettier', 'eslint'],
+\     'javascript': ['prettier'],
 \     'json': ['prettier'],
 \     'markdown': ['prettier'],
-\     'python': ['flake8'],
+\     'powershell': ['psscriptanalyzer'],
+\     'python': ['pycodestyle'],
 \     'yaml': ['prettier']
 \}
 
