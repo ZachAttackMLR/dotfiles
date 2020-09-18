@@ -1,0 +1,9 @@
+[Trigger]
+Operation = Upgrade
+Type = Package
+Target = *
+
+[Action]
+Description = Remove all cached versions of installed packages except for the most recent one
+When = PostTransaction
+Exec = /usr/bin/paccache -rk1
