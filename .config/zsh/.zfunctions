@@ -1,62 +1,35 @@
 # Zach Gorman's .zfunctions
 
-# fzf {{{
+# fzf integrations {{{
 
 # Credit: https://github.com/alichtman/dotfiles/blob/master/.zfunctions
 
 # fo [FUZZY PATTERN] - Open the selected file with the default editor
 #   - Bypass fuzzy finder if there's only one match (--select-1)
 #   - Exit if there's no match (--exit-0)
-fo() {
+function fo() {
   local files
   IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
 
 # fman [FUZZY PATTERN] - Search man pages.
-fman() {
+function fman() {
 	man -k . | fzf --prompt='Man> ' | awk '{print $1}' | cut -d "(" -f1 | xargs man
 }
 
 # macOS fuzzy app launcher
-launch() {
-	open -a "`find /Applications -name '*app' -maxdepth 1 | cut -d'/' -f 3 | cut -d'.' -f 1 | fzf --query=$1`"
-}
-
-# macOS fuzzy stystem app launcher
-syslaunch() {
-	open -a "`find /System/Applications -name '*app' -maxdepth 1 | cut -d'/' -f 4 | cut -d'.' -f 1 | fzf --query=$1`"
+function launch() {
+  open -a "$(find /Applications /System/Applications/ /System/Applications/Utilities -name '*app' -maxdepth 1 -exec basename {} .app \; | fzf --query "$1")"
 }
 
 # END fzf }}}
 
 # Dotfiles {{{
 
-# Credit: https://github.com/alichtman/dotfiles/blob/master/.zfunctions
-
 # Grab dotfiles list from shallow-backup config and throw it in a fzf selector for editing
 function dots() {
-	cat ~/.config/shallow-backup.conf | jq '.dotfiles' | jq -r '.[]' | fzf --bind "enter:execute(nvim ~/{})"
-}
-
-# backup-dots [COMMIT MESSAGE]
-function backup-dots() {
-	echo "Backing up..."
-	(
-	shallow-backup -no-splash -backup-dots -separate-dotfiles-repo;
-	cd "$HOME/shallow-backup/dotfiles/" || exit
-	git add .
-
-	# If no commit message is provided, open vim.
-	# Otherwise, commit with the provided message
-	commit_msg="$1"
-	if [ -z "$commit_msg" ] ; then
-		git commit --verbose
-	else
-		git commit -m "$commit_msg"
-	fi
-	git push
-	)
+  cat ~/.config/shallow-backup.conf | jq '.dotfiles' | jq 'keys' | jq -r '.[]' | fzf --bind "enter:execute(nvim ~/{})"
 }
 
 # END Dotfiles }}}
@@ -88,6 +61,61 @@ function pdiff() {
   diff -u $1 $2 | diff-so-fancy
 }
 
+function repo {
+  gitit repo $(echo "$1" | tr "/" " ")
+}
+
+function stopwatch {
+  date1=`date +%s`
+  while true; do
+    echo -ne "$(date -u --date @$((`date +%s` - $date1)) +%H:%M:%S)\r"
+    sleep 0.1
+  done
+}
+
+function timer {
+  date1=$((`date +%s` + $1))
+  while [ "$date1" -ge `date +%s` ]; do
+    echo -ne "$(date -u --date @$(($date1 - `date +%s`)) +%H:%M:%S)\r";
+    sleep 0.1
+  done
+}
+
+# Work Shortcuts {{{
+
+# Clone and configure work managed repos using my work github account's ssh config and key
+function workclone {
+  git clone github-pg:procter-gamble/"$1".git
+  cd $1 && git config user.email "gorman.zj@pg.com"
+}
+
+function newworkrepo {
+  git init && git config user.email "gorman.zj@pg.com"
+  ga . && gc -m "init commit"
+  git remote add origin git@github-pg:procter-gamble/$1.git
+  git push origin master
+}
+
+# MFA needed to log in to corporate AWS, so run the python script to do so
+function awsmfa {
+  getp "pg.com"
+  ( # start subshell
+  cd $HOME/docs/repos/work/others/aws-cli-federation-mfa/
+  python aws_ping_login.py --config "$AWS_SHARED_CREDENTIALS_FILE"
+  )
+}
+
+function previewdynamo {
+  for i in {0..4}; do
+    aws dynamodb query --table-name "$1" \
+                       --key-condition-expression "$2 = :a and $3 = :b" \
+                       --expression-attribute-values \
+                         "{\":a\":{\"S\":\"$4\"},\":b\":{\"S\":\"$5\"}}"\
+    | jq -r ".Items[0].data.L[$i].M"
+  done
+}
+
+# END Work Shortcuts }}}
 # END Shortcuts }}}
 
 # tmux {{{
@@ -96,7 +124,7 @@ function pdiff() {
 # `tm` will allow you to select your tmux session via fzf.
 # `tm irc` will attach to the irc session (if it exists), else it will create it.
 
-tm() {
+function tm() {
   [[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
   if [ $1 ]; then
     tmux $change -t "$1" 2>/dev/null || (tmux new-session -d -s $1 && tmux $change -t "$1"); return
@@ -126,35 +154,6 @@ function ranger {
 }
 
 # END ranger }}}
-
-# Everything above this line is stolen, everything below is original
-
-# Work Shortcuts {{{
-
-# Clone and configure work managed repos using my work github account's ssh config and key
-function workclone {
-  git clone github-pg:procter-gamble/"$1".git
-  cd $1 && git config user.email "gorman.zj@pg.com"
-}
-
-# MFA needed to log in to corporate AWS, so run the python script to do so
-function awsmfa {
-  getp "pg.com"
-  ( # start subshell
-  cd $HOME/docs/repos/work/others/aws-cli-federation-mfa/
-  python aws_ping_login.py --config "$AWS_SHARED_CREDENTIALS_FILE"
-  )
-}
-
-# END More Shortcuts }}}
-
-# Shortcuts {{{
-
-function repo {
-  gitit repo $(echo "$1" | tr "/" " ")
-}
-
-# END Shortcuts }}}
 
 # Sound Stuff {{{
 
@@ -195,7 +194,7 @@ function prettycsv() {
 
 # END Pretty CSV Viewer }}}
 
-# START Time Machine Info {{{
+# Time Machine Info {{{
 
 # Inspired by:
 # https://apple.stackexchange.com/questions/162464/time-machine-progress-from-the-command-line
