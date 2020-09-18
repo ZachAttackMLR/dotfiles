@@ -79,7 +79,7 @@ alias p="lpass login --color=auto $LPASSUSRNAME"
 alias getp='lpass show --color=always --password --clip'
 alias pdf='pdflatex -output-directory out'
 alias zathura="zathura --config-dir=$XDG_CONFIG_HOME/zathura"
-alias gitdiff='[ $# -eq 0 ] && git diff --color "$1" | diff-so-fancy | bat || git diff --color | diff-so-fancy | bat'
+alias gitdiff='[ $# -eq 0 ] && git diff --color "$1" | diff-so-fancy | bat || git diff --color | diff-so-fancy'
 alias pwsh='pwsh -NoLogo'
 
 # Autojump / z / fz
