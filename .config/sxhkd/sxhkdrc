@@ -14,19 +14,17 @@ super + @space
 super + Escape
     pkill -USR1 -x sxhkd
 
-#TODO combine the following two shortcuts (i.e. 4 lines of config) into one
-#     shortcut (i.e. 2 lines of config)
-# open browser
-super + o; b
-    firefox
+# open standard apps I don't autostart
+super + o; {f,b,s,p}
+    {firefox,brave,signal-desktop,spotify}
 
-# killall browser
+# killall browser(s)
 super + o; x
-    pkill -f firefox
+    killall brave; pkill -f firefox
 
 # open signal
-super + o; s
-    signal-desktop
+#super + o; s
+#    signal-desktop
 
 # focus/swap node in given direction
 super + {_,shift + }{h,j,k,l}
@@ -54,3 +52,7 @@ super + x
 # swap the current node with the biggest
 super + shift + k
     bspc node -s biggest
+
+# Change to next or prev workspace
+ctrl + shift + {h,l}
+    bspc desktop -f {prev.local,next.local}
