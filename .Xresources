@@ -2,8 +2,9 @@
 *.alpha: 0.9
 
 !! Set a default font and font size as shown below:
+/* *.font: -*-hack-*-r-*-*-*-*-*-*-*-*-*-* */
 *.font: monospace:size=14
-/* st*font: xft:Hack Nerd Font:style=Regular:size=14 */
+/* st*font: xft:Hack-RegularNerd Font:style=Regular:size=14 */
 
 /* name		dark	light */
 /* black	0	8 */
