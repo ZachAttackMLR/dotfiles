@@ -26,6 +26,12 @@ elif [ "$OS" = "Linux" ]; then
   alias up='omz update; cargo-update; rustup update; npm update; vimup; zplug update; echo -e "\n\033[0;34mArch News:\033[0m\n"; yay -Pw; echo -e "\n\033[0;34mPacman Updates:\033[0m\n"; checkupdates; echo -e "\n\033[0;34mAUR Updates:\033[0m\n"; yay -Qu; echo -e "\n\033[0;34mRemoving Orphans:\033[0m\n"; pacman -Qdt; yay -Yc'
   alias fullup='up; sudo pacman -Syu && yay -Sua'
 fi
+# TODO: Find a better way to do this part. This works but is kinda gross (so kinda fitting for WSL)
+if [ -n "$(uname -a | grep Microsoft)" ]; then
+  alias distroup='sudo apt update && sudo apt upgrade && sudo apt autoremove && sudo apt autoclean'
+  alias up='omz update && rustup update && cargo-update && npm update && zplug update && distroup' # last cuz gives sudo
+fi
+
 # END Update Stuff }}}
 
 # macOS Stuff {{{
