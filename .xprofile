@@ -35,7 +35,7 @@ elif [[ $(hostname) == 'shienar' ]]; then
   # xrandr --addmode DP-1 2560x1440_144.00
 fi
 
-setbg &            # backup script (low because of xrandr fuckery
+setbg &            # backup script (low because of xrandr fuckery)
 launch_polybar &   # start polybar via script (last cuz it always breaks)
 
 #if [[ "$(tty)" = "/dev/tty1" ]]; then
