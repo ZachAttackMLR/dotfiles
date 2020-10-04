@@ -3,7 +3,8 @@ snippet start "starting a python script"
 $1
 """
 
-# insert imports here
+# imports
+
 
 def main():
     """
@@ -12,5 +13,9 @@ def main():
     $2
 
 
-main()
+if __name__ == "__main__":
+    try:
+        main()
+    except KeyboardInterrupt:
+        pass
 endsnippet
