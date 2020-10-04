@@ -9,12 +9,20 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " Some syntax highlighting, linting, and autocompletion stuff
 Plug 'sheerun/vim-polyglot'
-Plug 'kovetskiy/sxhkd-vim'
 Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'davidhalter/jedi-vim'
-Plug 'rizzatti/dash.vim'
 Plug 'hashivim/vim-terraform'
+Plug 'juliosueiras/vim-terraform-completion'
+Plug 'kovetskiy/sxhkd-vim'
+if uname == "Darwin"
+  Plug 'rizzatti/dash.vim'
+endif
+
+" git stuff
+Plug 'APZelos/blamer.nvim'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 
 " Snippets
 Plug 'honza/vim-snippets'
@@ -25,21 +33,18 @@ Plug 'ntpeters/vim-better-whitespace' " highlight trailing whitespace
 Plug 'ryanoasis/vim-devicons' " Icons for NERDTree
 Plug 'mhinz/vim-startify' " 'The fancy start screen for Vim'
 Plug 'Yggdroot/indentLine'
-" Plug 'lukas-reineke/indent-blankline.nvim' " TODO get this to work
+" Plug 'lukas-reineke/indent-blankline.nvim' "TODO get this to work
 
 " File explorer
 Plug 'scrooloose/nerdtree'
 
 " Themes
-"Plug 'morhetz/gruvbox'
 Plug 'sainnhe/gruvbox-material'
 "Plug 'nightsense/snow'
 "Plug 'chriskempson/base16-vim'
-"Plug 'arzg/vim-colors-xcode'
 "Plug 'nanotech/jellybeans.vim', { 'tag': 'v1.7' }
-"Plug 'jaredgorski/spacecamp'
 "Plug 'nerdypepper/vim-colors-plain', { 'branch': 'duotone' }
-"Plug 'DankNeon/vim' "TODO: Try this out (uncomment this and line 218)
+"Plug 'DankNeon/vim' "TODO: Try this out
 
 " tmux things
 Plug 'christoomey/vim-tmux-navigator'
@@ -58,8 +63,6 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'Raimondi/delimitMate'
 
 " MarkDown stuff
-" Makes alignment pretty
-" (http://vimcasts.org/episodes/aligning-text-with-tabular-vim/)
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'ferrine/md-img-paste.vim'
@@ -71,7 +74,7 @@ Plug 'tpope/vim-surround'
 Plug 'https://gitlab.com/code-stats/code-stats-vim.git'
 Plug 'wakatime/vim-wakatime'
 
-" fzf - https://github.com/junegunn/fzf.vim
+" fzf
 if uname == "Darwin"
   Plug '/usr/local/opt/fzf'
 elseif uname == "Linux"
@@ -194,13 +197,6 @@ nnoremap <A-x> <C-x>
 nnoremap [e  :<c-u>execute 'move -1-'. v:count1<cr>
 nnoremap ]e  :<c-u>execute 'move +'. v:count1<cr>
 
-" Move a line of text using ALT+[jk]
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
-" source: http://amix.dk/vim/vimrc.html
-
 " END mappings }}}
 
 " END General Settings }}}
@@ -231,9 +227,6 @@ let g:gruvbox_contrast_dark='dark'
 
 " END jellybeans.vim config }}}
 
-"colorscheme spacecamp
-"colorscheme xcodewwdc
-"colorscheme xcodedark
 "colorscheme snow
 "colorscheme plain
 "colorscheme dank-neon
@@ -246,7 +239,9 @@ let g:gruvbox_contrast_dark='dark'
 " Vim Dev Icons {{{
 
 let g:WebDevIconsUnicodeGlyphDoubleWidth = 0
-let g:WebDevIconsOS = 'Darwin'
+if uname == "Darwin"
+  let g:WebDevIconsOS = 'Darwin'
+endif
 let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
 let g:webdevicons_conceal_nerdtree_brackets = 0
 
@@ -306,6 +301,12 @@ let g:ale_set_loclist=1
 let g:ale_set_quickfix=1
 let g:ale_open_list=1
 
+" Added option for line length when black fixes things per work standard
+let g:ale_python_black_options='--line-length 99'
+
+" Run :ALEFix when file is saved
+let g:ale_fix_on_save=1
+
 " ALELinters for each language
 " TODO: Get mypy working for python linting and/or config flake8
 "     : Get eslint working for js linting
@@ -315,11 +316,13 @@ let g:ale_linters = {
 \     'css': ['prettier'],
 \     'html': ['prettier'],
 \     'java': ['checkstyle', 'javac'],
-\     'javascript': ['prettier'],
+\     'javascript': ['prettier', 'eslint'],
+\     'javascriptreact': ['eslint'],
 \     'json': ['prettier'],
 \     'markdown': ['prettier'],
 \     'powershell': ['psscriptanalyzer'],
-\     'python': ['pycodestyle'],
+\     'python': ['pycodestyle', 'prettier'],
+\     'terraform': ['fmt', 'tflint'],
 \     'yaml': ['prettier']
 \}
 
@@ -328,11 +331,11 @@ let g:ale_fixers = {
 \     '*': ['remove_trailing_lines', 'trim_whitespace'],
 \     'java': ['google_java_format'],
 \     'c': ['clang-format'],
-\     'cpp': ['clang-format']
+\     'cpp': ['clang-format'],
+\     'powershell': ['psscriptanalyzer'],
+\     'python': ['black'],
+\     'terraform': ['fmt', 'tflint']
 \}
-
-" Run :ALEFix when file is saved
-let g:ale_fix_on_save=1
 
 " End ALE Config }}}
 
@@ -356,11 +359,12 @@ let g:UltiSnipsEditSplit="vertical"
 " and https://github.com/alichtman/dotfiles/blob/master/.vimrc
 
 " All the CoC plugins that I use and want installed everywhere all the time :)
+" TODO fix coc-eslint plugin
 let g:coc_global_extensions=[
       \ 'coc-ultisnips', 'coc-json', 'coc-cfn-lint', 'coc-clangd', 'coc-css',
       \ 'coc-highlight', 'coc-html', 'coc-java', 'coc-python', 'coc-markdownlint',
       \ 'coc-powershell', 'coc-texlab', 'coc-tsserver', 'coc-vimlsp', 'coc-rust-analyzer',
-      \ 'coc-yaml', 'coc-prettier', 'coc-syntax', 'coc-docker', 'coc-eslint' ]
+      \ 'coc-yaml', 'coc-prettier', 'coc-syntax', 'coc-docker' ]
 
 " https://github.com/neoclide/coc.nvim/issues/856
 if uname == "Darwin"
@@ -368,9 +372,6 @@ if uname == "Darwin"
 elseif uname == "Linux"
   let g:coc_node_path = "/usr/bin/node"
 endif
-
-"TODO add all the above extenions into this
-"let g:coc_global_extensions=[]
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -471,6 +472,22 @@ let g:jedi#popup_on_dot = 0
 let g:jedi#documentation_command = "H"
 
 " END jedi-vim }}}
+
+" blamer.nvim {{{
+
+let g:blamer_enabled = 1
+let g:blamer_delay = 2500
+let g:blamer_show_in_visual_modes = 0
+let g:blamer_prefix = '  '
+let g:blamer_date_format = '%I:%M%p %m/%d/%y'
+
+" END scratch.vim }}}
+
+" scratch.vim {{{
+
+let g:scratch_persistence_file="~/.local/share/scratch_persistence_file.md"
+
+" END scratch.vim }}}
 
 " CodeStats config {{{
 
