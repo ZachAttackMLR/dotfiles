@@ -22,10 +22,6 @@ super + o; {f,b,s,p}
 super + o; x
     killall brave; pkill -f firefox
 
-# open signal
-#super + o; s
-#    signal-desktop
-
 # focus/swap node in given direction
 super + {_,shift + }{h,j,k,l}
     bspc node -{f,s} {west,south,north,east}
