@@ -18,20 +18,17 @@ alias sl='ls' # for typo correction :)
 
 alias cargo-update='cargo install-update -a'
 alias vimup="nvim '+PlugUpdate' '+PlugUpgrade' '+CocUpdate' '+qall'"
+alias pipup="pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U --use-feature=2020-resolver"
+alias globalup='omz update; rustup update; cargo-update; npm update -g; vimup; zplug update;'
 
 if [ "$OS" = "Darwin" ]; then
   alias brewup='brew update; brew upgrade; brew cask upgrade; brew cleanup;' # excluded brew doctor
-  alias up='omz update; rustup update; cargo-update; npm update; brewup; vimup; zplug update;'
+  alias up='brewup; globalup'
 elif [ "$OS" = "Linux" ]; then
-  alias up='omz update; cargo-update; rustup update; npm update; vimup; zplug update; echo -e "\n\033[0;34mArch News:\033[0m\n"; yay -Pw; echo -e "\n\033[0;34mPacman Updates:\033[0m\n"; checkupdates; echo -e "\n\033[0;34mAUR Updates:\033[0m\n"; yay -Qu; echo -e "\n\033[0;34mRemoving Orphans:\033[0m\n"; pacman -Qdt; yay -Yc'
-  alias fullup='up; sudo pacman -Syu && yay -Sua'
+  alias archup='echo -e "\n\033[0;34mArch News:\033[0m\n"; yay -Pw; echo -e "\n\033[0;34mPacman Updates:\033[0m\n"; checkupdates; echo -e "\n\033[0;34mAUR Updates:\033[0m\n"; yay -Qu; echo -e "\n\033[0;34mRemoving Orphans:\033[0m\n"; pacman -Qdt; yay -Yc;'
+  alias up='globalup; archup;'
+  alias fullup='archup; sudo pacman -Syu && yay -Sua; globalup'
 fi
-# TODO: Find a better way to do this part. This works but is kinda gross (so kinda fitting for WSL)
-if [ -n "$(uname -a | grep Microsoft)" ]; then
-  alias distroup='sudo apt update && sudo apt upgrade && sudo apt autoremove && sudo apt autoclean'
-  alias up='omz update && rustup update && cargo-update && npm update && zplug update && distroup' # last cuz gives sudo
-fi
-
 # END Update Stuff }}}
 
 # macOS Stuff {{{
@@ -85,8 +82,9 @@ alias p="lpass login --color=auto $LPASSUSRNAME"
 alias getp='lpass show --color=always --password --clip'
 alias pdf='pdflatex -output-directory out'
 alias zathura="zathura --config-dir=$XDG_CONFIG_HOME/zathura"
-alias gitdiff='[ $# -eq 0 ] && git diff --color "$1" | diff-so-fancy | bat || git diff --color | diff-so-fancy'
+alias gitdiff='[[ $# -eq 0 ]] && git diff --color "$1" || git diff --color'
 alias pwsh='pwsh -NoLogo'
+alias tf='terraform'
 
 # Autojump / z / fz
 alias j='z'
@@ -116,6 +114,7 @@ alias mv="mv -i"
 
 # Fun Stuff {{{
 
+alias mandelbrot='bash ~/bin/mandelbrot'
 alias trip='yes "$(seq 231 -1 16)" | while read i; do printf "\x1b[48;5;${i}m\n"; sleep .02; done'
 alias matrix='unimatrix -s 93'
 alias pipes='pipes.sh -f 75 -t 3 -B'
