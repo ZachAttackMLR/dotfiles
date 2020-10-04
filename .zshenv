@@ -28,6 +28,7 @@ export WAKATIME_HOME="$XDG_CONFIG_HOME"/wakatime
 export ANSIWEATHERRC="$XDG_CONFIG_HOME"/ansiweather/config
 export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
 export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
+export AZURE_CONFIG_DIR="$XDG_CONFIG_HOME"/azure
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export HTTPIE_CONFIG_DIR="$XDG_CONFIG_HOME"/httpie
 export MPLCONFIGDIR="$XDG_CONFIG_HOME"/matplotlib
