@@ -8,15 +8,15 @@ bspc rule -r "*"
 #fi
 
 # More icons... some change when uncommeted.... FIXME
-#                                        
-#                                        
+#         ﲹ                                 溜
+#                       溜 ﴃ
 # Starting up workspaces on both monitors
 # TODO fix this using below loop and for multiple machines
 
 if [[ $(hostname) == 'cairhein' ]]; then
   bspc monitor eDP-1 -d   
   bspc monitor DP-1-3 -d    
-  bspc monitor DP-3 -d    
+  bspc monitor DP-3 -d   溜 
   bspc desktop -f 4
 elif [[ $(hostname) == 'sheinar' ]]; then
   bspc monitor DP-0 -d     
