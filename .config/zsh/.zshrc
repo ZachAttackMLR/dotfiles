@@ -11,10 +11,14 @@ eval "$(starship init zsh)"
 
 export BETTER_EXCEPTIONS=1 # Python Better Exceptions
 export BAT_THEME="1337"
-export TERM=xterm-256color # fix for zsh-autosuggestions colors not being correct in tmux
-export FZF_DEFAULT_COMMAND='fd -H -E ".git" -E ".DS_Store" --type file --follow --color=always'
+export TERM=xterm-256color
+export FZF_DEFAULT_COMMAND='fd -H -I -E ".git" -E ".DS_Store" -t f -L -c always'
 export FZF_DEFAULT_OPTS="--cycle --ansi"
-export FZF_BASE="/usr/local/bin/fzf"
+if [ "$OS" = "Darwin" ]; then
+  export FZF_BASE="/usr/local/bin/fzf"
+elif [ "$OS" = "Linux" ]; then
+  export FZF_BASE="/usr/bin/fzf"
+fi
 
 # END Env Vars }}}
 
