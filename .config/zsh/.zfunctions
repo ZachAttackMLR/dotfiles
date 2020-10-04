@@ -90,6 +90,9 @@ function workclone {
 }
 
 function newworkrepo {
+  mkdir -p $(pwd)/$1
+  cd $1
+  touch README.md
   git init && git config user.email "gorman.zj@pg.com"
   ga . && gc -m "init commit"
   git remote add origin git@github-pg:procter-gamble/$1.git
@@ -103,16 +106,6 @@ function awsmfa {
   cd $HOME/docs/repos/work/others/aws-cli-federation-mfa/
   python aws_ping_login.py --config "$AWS_SHARED_CREDENTIALS_FILE"
   )
-}
-
-function previewdynamo {
-  for i in {0..4}; do
-    aws dynamodb query --table-name "$1" \
-                       --key-condition-expression "$2 = :a and $3 = :b" \
-                       --expression-attribute-values \
-                         "{\":a\":{\"S\":\"$4\"},\":b\":{\"S\":\"$5\"}}"\
-    | jq -r ".Items[0].data.L[$i].M"
-  done
 }
 
 # END Work Shortcuts }}}
