@@ -20,5 +20,12 @@
           "settings": {}
         }
     },
-    "python.jediPath": "/usr/lib/python3.8/site-packages/jedi/"
+    "python.jediPath": "/usr/lib/python3.8/site-packages/jedi/",
+    "markdownlint.config": {
+      "MD013": {
+        "line_length": 99,
+        "tables": false
+      },
+      "MD026": false
+    }
 }
