@@ -1,8 +1,10 @@
-# Replace the "❯" symbol in the prompt with "➜"
-[character]      # The name of the module we are configuring is "character"
-symbol = "➜"     # The "symbol" segment is being set to "➜"
-error_symbol = "✗"
-use_symbol_for_status = true
+# Zach's starship config
+
+# General {{{
+
+[character]
+success_symbol = "[➜](bold green)"
+error_symbol = "[✗](bold red)"
 
 [cmd_duration]
 min_time = 1
@@ -10,7 +12,7 @@ min_time = 1
 [time]
 disabled = false
 use_12hr = true
-prefix = ""
+format = "[$time]($style) "
 
 [[battery.display]]
 threshold = 15
@@ -24,38 +26,73 @@ symbol = "🐏 "
 separator = " | "
 style = "bold dimmed white"
 
+# Only missing $ruby afaik
+format = """\
+    $username\
+    $hostname\
+    $directory\
+    $git_branch\
+    $git_state\
+    $git_status\
+    $package\
+    $docker\
+    $nodejs\
+    $java\
+    $terraform\
+    $aws\
+    $python\
+    $rust\
+    $golang\
+    $nix_shell\
+    $memory_usage\
+    $time\
+    $cmd_duration\
+    $line_break\
+    $jobs\
+    $battery\
+    $character\
+    """
+
+# END General }}}
+
+# Languages/IaaS/Frameworks {{{
+
+[aws]
+symbol = " "
+
 [aws.region_aliases]
+us-east-1 = "VA"
 us-east-2 = "OH"
 
-[terraform]
-symbol = "🚧 "
+[docker_context]
+symbol = " "
+
+[gcloud]
+symbol = " "
+
+[golang]
+symbol = " "
+
+[java]
+symbol = " "
+
+[nodejs]
+symbol = "  "
 
 [python]
 style = "green"
+symbol = "  "
 
-prompt_order = [
-    "username",
-    "hostname",
-    "directory",
-    "git_branch",
-    "git_state",
-    "git_status",
-    "package",
-    "docker",
-    "nodejs",
-    "java",
-    "terraform",
-    "aws",
-    "python",
-    "rust",
-    # "ruby",
-    # "golang",
-    "nix_shell",
-    "memory_usage",
-    "time",
-    "cmd_duration",
-    "line_break",
-    "jobs",
-    "battery",
-    "character",
-]
+[ruby]
+symbol = " "
+
+[rust]
+symbol = " "
+
+[swift]
+symbol = " "
+
+[terraform]
+symbol = "🚧"
+
+# END Languages/IaaS/Frameworks }}}
