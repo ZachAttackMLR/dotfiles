@@ -108,6 +108,33 @@ function awsmfa {
   )
 }
 
+function jwt {
+  arr=($(echo "$1" | tr "." " "))
+  for i in 1 2; do
+    [[ $i = 1 ]] && echo '\n\033[0;31mHeader:\033[0m'
+    [[ $i = 2 ]] && echo '\n\033[0;31mToken:\033[0m'
+    echo ${arr[$i]} | base64 --decode 2>/dev/null | jq
+  done
+}
+
+function tf-awsinit {
+  mkdir -p $1 && cd $1
+  echo -e 'terraform {\nrequired_providers {\naws={\nsource="hashicorp/aws"\nversion="~> 3"\n}\n}\nrequired_version=">=0.13"\n}\n' > versions.tf
+  echo -e '\nprovider "aws" {\nfeatures {}\n region=var.aws_region\n}' >> versions.tf
+  echo -e 'variable "aws_region" {\ndescription="AWS Region to deploy resources to."\ndefault="us-east-1"\n}' > vars.tf
+  touch main.tf
+  tf fmt && tf init && tf validate
+}
+
+function tf-azureinit {
+  mkdir -p $1 && cd $1
+  echo -e 'terraform {\nrequired_providers {\nazurerm={\nsource="hashicorp/azurerm"\nversion="~> 2.30.0"\n}\nrandom={\nsource="hashicorp/random"\nversion="~> 2.3.0"\n}\n}\nrequired_version=">=0.13"\n}\n' > versions.tf
+  echo -e 'provider "azurerm" {\nfeatures {}\nskip_provider_registration=true\nsubscription_id=var.sub_id\n}' >> versions.tf
+  echo -e 'variable "sub_id" {\ndescription="Azure subscription to deploy resources to."\ndefault="3927f315-e80b-42b6-93b7-3afbb10f556f"\n}' > vars.tf
+  echo -e 'resource "random_password" "password" {\nlength=32\nspecial=true\noverride_special="_%!$#@"\n}' > main.tf
+  tf fmt && tf init && tf validate
+}
+
 # END Work Shortcuts }}}
 # END Shortcuts }}}
 
