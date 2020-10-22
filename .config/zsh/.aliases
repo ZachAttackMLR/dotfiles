@@ -29,6 +29,11 @@ elif [ "$OS" = "Linux" ]; then
   alias up='globalup; archup;'
   alias fullup='archup; sudo pacman -Syu && yay -Sua; globalup'
 fi
+# TODO: Finda  better way to do this part. This works but is kinda gross (so fitting for WSL)
+if [ -n "$(uname -a | grep Microsoft)" ]; then
+  alias distroup='sudo apt update && sudo apt upgrade && sudo apt autoremove && sudo apt autoclean'
+  alias up='omz update && rustup update && cargo-update && npm update && zplug update && distroup' # last cuz gives sudo
+fi
 # END Update Stuff }}}
 
 # macOS Stuff {{{
@@ -46,6 +51,12 @@ if [ "$OS" = "Darwin" ]; then
   # Shpotify - macOS CLI Spotify controller
   alias spot='spotify'
   alias spotstat='spot status'
+elif [[ "$OS" = "Linux" ]]; then
+  alias chkvol='pamixer --get-volume'
+  alias chkmute='pamixer --get-mute'
+  alias mute='pamixer --toggle-mute'
+  alias volup='pamixer -i 2'
+  alias voldown='pamixer -d 2'
 fi
 
 # END macOS Stuff }}}
@@ -82,9 +93,10 @@ alias p="lpass login --color=auto $LPASSUSRNAME"
 alias getp='lpass show --color=always --password --clip'
 alias pdf='pdflatex -output-directory out'
 alias zathura="zathura --config-dir=$XDG_CONFIG_HOME/zathura"
-alias gitdiff='[[ $# -eq 0 ]] && git diff --color "$1" || git diff --color'
+alias gdiff='[[ $# -eq 0 ]] && git diff --color "$1" || git diff --color'
 alias pwsh='pwsh -NoLogo'
 alias tf='terraform'
+alias gfl='git fetch && git pull'
 
 # Autojump / z / fz
 alias j='z'
