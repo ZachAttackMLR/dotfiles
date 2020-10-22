@@ -154,6 +154,7 @@ LPASS_AGENT_TIMEOUT=21600
 ############
 
 export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:/usr/bin/"
 export PATH="$PATH:/usr/local/bin"
 export PATH="$PATH:/sbin"
 export PATH="$PATH:/usr/local"
@@ -161,6 +162,7 @@ export PATH="$PATH:/usr/sbin"
 export PATH="$PATH:/usr/local/sbin"
 export PATH="$CARGO_HOME/bin:$PATH"
 export PATH="$HOME/.serverless/bin:$PATH"
+export PATH="$XDG_DATA_HOME/npm/bin:$PATH"
 [ "$OS" = "Linux" ] && export PATH="$PATH:$GOPATH/bin"
 if [ "$OS" = "Darwin" ]; then
   export PATH="$PATH:$HOME/Library/Python/3.7/bin"
