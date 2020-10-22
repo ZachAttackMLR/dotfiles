@@ -26,7 +26,7 @@ Set-PSReadLineKeyHandler -Key "Ctrl+f" -Function ForwardWord
 Set-PSReadLineOption -EditMode Vi
 
 # Colors
-Set-PSReadLineOption -Colors @{ Prediction = 'Green' }
+#Set-PSReadLineOption -Colors @{ Prediction = 'Green' }
 
 # Functions
 function ~ {
