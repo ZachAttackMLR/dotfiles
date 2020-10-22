@@ -35,6 +35,9 @@ Plug 'mhinz/vim-startify' " 'The fancy start screen for Vim'
 Plug 'Yggdroot/indentLine'
 " Plug 'lukas-reineke/indent-blankline.nvim' "TODO get this to work
 
+" Nvim in Firefox!
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+
 " File explorer
 Plug 'scrooloose/nerdtree'
 
@@ -334,7 +337,7 @@ let g:ale_fixers = {
 \     'cpp': ['clang-format'],
 \     'powershell': ['psscriptanalyzer'],
 \     'python': ['black'],
-\     'terraform': ['fmt', 'tflint']
+\     'terraform': ['terraform']
 \}
 
 " End ALE Config }}}
