@@ -610,13 +610,13 @@ format-underline = #1db954
 type = custom/script
 exec-if = hash speedtest
 exec = "/home/z/pkgs/polybar-speedtest/polybar-speedtest"
-interval = 90
+interval = 300
 
 [module/speedtestUp]
 type = custom/script
 exec-if = hash speedtest
 exec = "/home/z/pkgs/polybar-speedtest/polybar-speedtest --upload"
-interval = 90
+interval = 300
 
 ; END speedtest }}}
 
