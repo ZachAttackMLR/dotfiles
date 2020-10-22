@@ -26,6 +26,8 @@
         "line_length": 99,
         "tables": false
       },
-      "MD026": false
-    }
+      "MD026": false,
+      "MD033": false
+    },
+    "rust-analyzer.serverPath": "/usr/bin/rust-analyzer"
 }
