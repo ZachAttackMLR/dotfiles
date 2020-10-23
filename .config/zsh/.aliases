@@ -6,7 +6,7 @@ if [ "$OS" = "Darwin" ]; then
 elif [ "$OS" = "Linux" ]; then
   alias ls='lsd -1A --icon-theme unicode --group-dirs first'
   alias ll='lsd -l -1A --icon-theme unicode --group-dirs first'
-  alias tree='ls --tree'
+  alias tree='lsd --tree --icon-theme unicode --group-dirs first'
 fi
 
 alias ldown='ls ~/Downloads/'
@@ -97,6 +97,7 @@ alias gdiff='[[ $# -eq 0 ]] && git diff --color "$1" || git diff --color'
 alias pwsh='pwsh -NoLogo'
 alias tf='terraform'
 alias gfl='git fetch && git pull'
+alias yt="youtube-dl -f 'bestvideo+bestaudio'"
 
 # Autojump / z / fz
 alias j='z'
