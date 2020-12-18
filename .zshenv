@@ -163,6 +163,7 @@ export PATH="$PATH:/usr/local/sbin"
 export PATH="$CARGO_HOME/bin:$PATH"
 export PATH="$HOME/.serverless/bin:$PATH"
 export PATH="$XDG_DATA_HOME/npm/bin:$PATH"
+export PATH="$HOME/.pyenv/bin:$PATH"
 [ "$OS" = "Linux" ] && export PATH="$PATH:$GOPATH/bin"
 if [ "$OS" = "Darwin" ]; then
   export PATH="$PATH:$HOME/Library/Python/3.7/bin"
