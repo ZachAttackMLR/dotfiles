@@ -2,8 +2,8 @@
 # Based on: https://github.com/fcambus/ansiweather/blob/master/ansiweatherrc.example
 
 fetch_cmd:curl -sf
-#location:Cincinnati,US
-location:Elburn,US
+location:Cincinnati,US
+#location:Elburn,US
 units:imperial
 forecast:0
 ansi:true
