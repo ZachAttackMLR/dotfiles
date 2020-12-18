@@ -98,6 +98,10 @@ alias pwsh='pwsh -NoLogo'
 alias tf='terraform'
 alias gfl='git fetch && git pull'
 alias yt="youtube-dl -f 'bestvideo+bestaudio'"
+alias lt='ls -lt | bat'
+alias fuckyougit='git log --all --decorate --oneline --graph'
+alias py='python'
+alias mountnas="sudo mount -t nfs -o vers=4 $NAS_IP:/docs /home/z/docs/nas"
 
 # Autojump / z / fz
 alias j='z'

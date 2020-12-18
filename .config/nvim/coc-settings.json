@@ -21,6 +21,7 @@
         }
     },
     "python.jediPath": "/usr/lib/python3.8/site-packages/jedi/",
+    "python.sortImports.path": "/home/z/.local/bin/isort",
     "markdownlint.config": {
       "MD013": {
         "line_length": 99,
@@ -29,5 +30,6 @@
       "MD026": false,
       "MD033": false
     },
-    "rust-analyzer.serverPath": "/usr/bin/rust-analyzer"
+    "rust-analyzer.serverPath": "/usr/bin/rust-analyzer",
+    "latex.lint.onSave": true
 }

@@ -6,3 +6,4 @@ other/
 venv/
 .eslintrc*
 .terraform/
+.python_version

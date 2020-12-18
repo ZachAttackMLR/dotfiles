@@ -115,6 +115,7 @@ set switchbuf=usetab           " Search first in opened windows if opening buffe
 set shortmess+=c               " Don't give ins-completion-menu messages
 set backspace=indent,eol,start " Make delete in insert mode behave as expected.
 syntax on                      " turn on syntax highlighting within vim
+set encoding=UTF-8
 
 " Enable copying to macOS/Arch clipboard
 if uname == "Darwin"
@@ -168,9 +169,9 @@ set preserveindent
 filetype plugin indent on
 
 set expandtab     " enter spaces when tab is pressed
-set tabstop=2     " use 2 spaces to represent tab
-set softtabstop=2
-set shiftwidth=2  " number of spaces to use for auto indent
+set tabstop=4     " use 2 spaces to represent tab
+set softtabstop=4
+set shiftwidth=4  " number of spaces to use for auto indent
 set autoindent    " copy indent from current line when starting a new lineet noexpandtab
 
 " END Indentation Config }}}
@@ -181,7 +182,7 @@ set autoindent    " copy indent from current line when starting a new lineet noe
 nnoremap <Esc><Esc> :w<CR>
 
 " Map leader pdf to write and then make a pdf from the .tex file we're editing
-nnoremap <leader>pdf :w <bar> !pdflatex %<cr>
+nnoremap <leader>pdf :w <bar> !pdflatex -output-directory out % && mv -f out/%:r.pdf . && zathura %:r.pdf <cr>
 
 " Map leader er to replace a space with a line break the join the lines
 " Helps when I'm over 80 lines in LaTeX and want a break, but also a join
@@ -336,7 +337,7 @@ let g:ale_fixers = {
 \     'c': ['clang-format'],
 \     'cpp': ['clang-format'],
 \     'powershell': ['psscriptanalyzer'],
-\     'python': ['black'],
+\     'python': ['add_blank_lines_for_python_control_statements', 'autoimport', 'black', 'isort'],
 \     'terraform': ['terraform']
 \}
 
@@ -549,7 +550,7 @@ let g:startify_custom_header = [
         \ '             /    ; :     ;     .    -.. _.`     _.`                 /         `',
         \ '            /     :  `-._ |    .    _.--`     _.`                   |',
         \ '',
-        \ '                                   End my suffering',
+        \ '                                   Vim > VSCode > JetBrains IDEs',
         \ ]
 
 let g:startify_files_number = 8

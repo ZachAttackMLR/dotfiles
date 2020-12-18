@@ -52,3 +52,6 @@ super + shift + k
 # Change to next or prev workspace
 ctrl + shift + {h,l}
     bspc desktop -f {prev.local,next.local}
+
+ctrl + shift + 4
+    flameshot gui
