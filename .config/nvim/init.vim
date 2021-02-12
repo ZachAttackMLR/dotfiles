@@ -15,6 +15,8 @@ Plug 'davidhalter/jedi-vim'
 Plug 'hashivim/vim-terraform'
 Plug 'juliosueiras/vim-terraform-completion'
 Plug 'kovetskiy/sxhkd-vim'
+"Plug 'kosayoda/nvim-lightbulb' " TODO fix this (probably with some lspconfig
+"or lsp
 if uname == "Darwin"
   Plug 'rizzatti/dash.vim'
 endif
@@ -667,6 +669,11 @@ augroup SpellcheckAndWritingTools
     autocmd FileType text setlocal spell | call litecorrect#init()
     hi SpellBad cterm=underline ctermfg=red
 augroup END
+
+"augroup LightbulbPlugin
+"    autocmd!
+"    autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
+"augroup END
 
 "TODO get this to work
 " indentLines plugin sucks when you're dealing with TeX, MarkDown, etc
