@@ -1,6 +1,6 @@
 [alias]
   uncommit = reset --soft HEAD^
-  unstage = git reset HEAD
+  unstage = reset HEAD
 [user]
   email = gorman.zacharyj@gmail.com
   name = Zach Gorman
