@@ -4,6 +4,7 @@
 fetch_cmd:curl -sf
 location:Cincinnati,US
 #location:Elburn,US
+#location:Cusco,PE
 units:imperial
 forecast:0
 ansi:true
