@@ -2,7 +2,7 @@
 # Written by xscreensaver-demo 5.44 for z on Mon Sep 14 20:04:39 2020.
 # https://www.jwz.org/xscreensaver/
 
-timeout:                   0:30:00
+timeout:                   5:30:00
 cycle:                     0:02:00
 lock:                      True
 lockTimeout:               0:00:00
