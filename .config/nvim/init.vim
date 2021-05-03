@@ -15,6 +15,7 @@ Plug 'davidhalter/jedi-vim'
 Plug 'hashivim/vim-terraform'
 Plug 'juliosueiras/vim-terraform-completion'
 Plug 'kovetskiy/sxhkd-vim'
+Plug 'sohkai/syntastic-local-solhint'
 "Plug 'kosayoda/nvim-lightbulb' " TODO fix this (probably with some lspconfig
 "or lsp
 if uname == "Darwin"
@@ -156,9 +157,9 @@ set nolinebreak
 set breakindent
 set breakindentopt=min:40
 
-" 80 character guideline (as god intented)
+" 99 character guideline (sorry stallman)
 highlight ColorColumn ctermbg=lightgrey
-set colorcolumn=80
+set colorcolumn=99
 
 " Show “invisible” characters
 set list
@@ -171,9 +172,9 @@ set preserveindent
 filetype plugin indent on
 
 set expandtab     " enter spaces when tab is pressed
-set tabstop=4     " use 2 spaces to represent tab
-set softtabstop=4
-set shiftwidth=4  " number of spaces to use for auto indent
+set tabstop=2     " use 2 spaces to represent tab
+set softtabstop=2
+set shiftwidth=2  " number of spaces to use for auto indent
 set autoindent    " copy indent from current line when starting a new lineet noexpandtab
 
 " END Indentation Config }}}
