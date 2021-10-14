@@ -20,15 +20,19 @@ spotify &                     # music is great
 # For reference:
 #     xrandr --newmode "2560x1440_30.00"  146.25  2560 2680 2944 3328  1440 1443 1448 1468 -hsync +vsync
 if [[ $(hostname) == 'cairhein' ]]; then
-  teams &        # Only use on work machine
+  #teams &        # Only use on work machine
   firefox-developer-edition &
 
-  # Home
-  #xrandr --output eDP-1 --mode 1920x1080
-  #xrandr --output DP-1-3 --mode 1920x1080 --rate 60 --right-of eDP-1 --primary
+  # Home - Two Monitors
+  #xrandr --output eDP-1 --mode 1920x1080 --right-of DP-1-3
+  #xrandr --output DP-1-3 --mode 1920x1080 --rate 60 --primary
+
+  # Home - Three Monitors
+  #xrandr --output eDP-1 --mode 1920x1080 --right-of DP-1-3
+  #xrandr --output DP-1-3 --mode 1920x1080 --rate 60 --primary
   #xrandr --output DP-3 --mode 1920x1080 --rate 60 --right-of DP-1-3
 
-  # Cinci
+  # Cincy
   xrandr --output eDP-1 --mode 1920x1080 --left-of DP-1-3
   xrandr --newmode "2560x1440_60.00"  312.25  2560 2752 3024 3488  1440 1443 1448 1493 -hsync +vsync
   xrandr --addmode DP-1-3 2560x1440_60.00
