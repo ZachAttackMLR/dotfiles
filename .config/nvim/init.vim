@@ -553,7 +553,7 @@ let g:startify_custom_header = [
         \ '             /    ; :     ;     .    -.. _.`     _.`                 /         `',
         \ '            /     :  `-._ |    .    _.--`     _.`                   |',
         \ '',
-        \ '                                   Vim > VSCode > JetBrains IDEs',
+        \ '                                NeoVim > VSCode > JetBrains IDEs',
         \ ]
 
 let g:startify_files_number = 8
