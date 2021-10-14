@@ -81,19 +81,28 @@ function timer {
   done
 }
 
+function fakebackground {
+  if [[ $(ls /dev/video* | wc -l) < 9 ]]; then
+    sudo modprobe akvcam
+  fi
+
+  python3 ~/docs/repos/play/others/Linux-Fake-Background-Webcam/fake.py\
+    -v /dev/video7 --no-ondemand -H 1080 -W 1920 -F 30 --no-foreground
+}
+
 # Work Shortcuts {{{
 
 # Clone and configure work managed repos using my work github account's ssh config and key
 function workclone {
   git clone github-pg:procter-gamble/"$1".git
-  cd $1 && git config user.email "gorman.zj@pg.com"
+  cd $1 && git config user.email "$WORK_EMAIL"
 }
 
 function newworkrepo {
   mkdir -p $(pwd)/$1
   cd $1
   touch README.md
-  git init && git config user.email "gorman.zj@pg.com"
+  git init && git config user.email "$WORK_EMAIL"
   ga . && gc -m "init commit"
   git remote add origin git@github-pg:procter-gamble/$1.git
   git push origin master
@@ -120,7 +129,7 @@ function jwt {
 function tf-awsinit {
   mkdir -p $1 && cd $1
   echo -e 'terraform {\nrequired_providers {\naws={\nsource="hashicorp/aws"\nversion="~> 3"\n}\n}\nrequired_version=">=0.13"\n}\n' > versions.tf
-  echo -e '\nprovider "aws" {\nfeatures {}\n region=var.aws_region\n}' >> versions.tf
+  echo -e 'provider "aws" {\nfeatures {}\n region=var.aws_region\n}' >> versions.tf
   echo -e 'variable "aws_region" {\ndescription="AWS Region to deploy resources to."\ndefault="us-east-1"\n}' > vars.tf
   touch main.tf
   tf fmt && tf init && tf validate
@@ -130,7 +139,7 @@ function tf-azureinit {
   mkdir -p $1 && cd $1
   echo -e 'terraform {\nrequired_providers {\nazurerm={\nsource="hashicorp/azurerm"\nversion="~> 2.30.0"\n}\nrandom={\nsource="hashicorp/random"\nversion="~> 2.3.0"\n}\n}\nrequired_version=">=0.13"\n}\n' > versions.tf
   echo -e 'provider "azurerm" {\nfeatures {}\nskip_provider_registration=true\nsubscription_id=var.sub_id\n}' >> versions.tf
-  echo -e 'variable "sub_id" {\ndescription="Azure subscription to deploy resources to."\ndefault="3927f315-e80b-42b6-93b7-3afbb10f556f"\n}' > vars.tf
+  echo -e "variable \"sub_id\" {\ndescription=\"Azure subscription to deploy resources to.\"\ndefault=\"$AZ_SUB\"\n}" > vars.tf
   echo -e 'resource "random_password" "password" {\nlength=32\nspecial=true\noverride_special="_%!$#@"\n}' > main.tf
   tf fmt && tf init && tf validate
 }
