@@ -96,6 +96,7 @@ alias zathura="zathura --config-dir=$XDG_CONFIG_HOME/zathura"
 alias gdiff='[[ $# -eq 0 ]] && git diff --color "$1" || git diff --color'
 alias pwsh='pwsh -NoLogo'
 alias tf='terraform'
+alias tg='terragrunt'
 alias gfl='git fetch && git pull'
 alias yt="youtube-dl -f 'bestvideo+bestaudio'"
 alias lt='ls -lt | bat'
