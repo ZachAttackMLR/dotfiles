@@ -53,12 +53,14 @@ format = """\
     $character\
     """
 
+command_timeout = 15000  # in ms, so 15s
+
 # END General }}}
 
 # Languages/IaaS/Frameworks {{{
 
 [aws]
-symbol = " "
+symbol = "🌩  "
 
 [aws.region_aliases]
 us-east-1 = "VA"
@@ -74,25 +76,25 @@ symbol = " "
 symbol = " "
 
 [java]
-symbol = " "
+symbol = "☕️ "
 
 [nodejs]
-symbol = "  "
+symbol = "💩 "
 
 [python]
 style = "green"
-symbol = "  "
+symbol = "🐍 "
 
 [ruby]
-symbol = " "
+symbol = "💎 "
 
 [rust]
 symbol = " "
 
 [swift]
-symbol = " "
+symbol = "🦜 "
 
 [terraform]
-symbol = "🚧"
+symbol = "🚧 "
 
 # END Languages/IaaS/Frameworks }}}
